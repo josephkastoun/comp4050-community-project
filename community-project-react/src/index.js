@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/homePage/homePage.js'
+import Header from './components/headingBar.jsx'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
