@@ -4,7 +4,9 @@ class headingBar extends Component {
     render() {
         return (
             <div>
-                
+                <p>
+                    
+                </p>
             </div>
         );
     }
