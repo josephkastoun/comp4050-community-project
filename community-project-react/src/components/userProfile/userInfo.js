@@ -72,7 +72,7 @@ function userInfo() {
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="card">
                     <div class="card-body">
                         <a href="#" class="card-link">Mow the lawn</a>
@@ -80,7 +80,7 @@ function userInfo() {
                     </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="card">
                     <div class="card-body">
                         <a href="#" class="card-link">Fix the kitchen sink</a>
@@ -88,7 +88,7 @@ function userInfo() {
                     </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="card">
                     <div class="card-body">
                         <a href="#" class="card-link">Replace lightbulb</a>
