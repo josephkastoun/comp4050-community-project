@@ -1,0 +1,40 @@
+.header {
+    height: 100px;
+}
+
+.userCoinsIcon{
+    margin: -2px 3px 0 5px;
+    height: 100%;
+    width: 18px;
+}
+
+.userProfileIcon{
+    margin: 0 10px 0 10px;
+    height: 3vh;
+    width: 3vh;
+}
+
+.userProfileIcon:hover{
+    fill: #17a2b8;
+    cursor: pointer;
+}
+
+.logoDiv{
+    fill: #17a2b8;
+}
+
+.logoDiv:hover{
+    color: #17a2b8 !important;
+}
+
+.coinContainer{
+    margin: 0 20px 0 20px;
+}
+
+.coinsText{
+    margin: 0 5px 0 0px;
+}
+
+.mainLogo{
+    margin: 0 10px 0 10px;
+}

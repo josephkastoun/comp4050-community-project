@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import './headingBar.css'
+import './headingBar.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
 class headingBar extends Component {
