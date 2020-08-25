@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import cardTest from './cardTest.png'
 import React, { Component } from 'react';
 
 class activeListings extends Component {
@@ -8,9 +7,9 @@ class activeListings extends Component {
         super(props);
         this.state = {
             jobs: [
-                {id: 1, title:'Job 1', desc: 'Description for job 1', price: 10, loc: 'Macquarie Park'},
-                {id: 2, title:'Job 2', desc: 'Description for job 2', price: 20, loc: 'Macquarie University'},
-                {id: 3, title:'Job 3', desc: 'Description for job 3', price: 30, loc: 'Chatswood'},
+                {id: 1, title:'Active job 1', desc: 'Description for active job 1', price: 10, loc: 'Macquarie Park'},
+                {id: 2, title:'Active job 2', desc: 'Description for active job 2', price: 20, loc: 'Macquarie University'},
+                {id: 3, title:'Active job 3', desc: 'Description for active job 3', price: 30, loc: 'Chatswood'},
             ]  
         };
     }
@@ -27,7 +26,7 @@ class activeListings extends Component {
                         </div>
                         <div class="card-footer bg-transparent border-secondary">
                             <p className="jobLocation">Location: {job.loc}</p>
-                            <p className="jobPrice">Location: {job.price}</p>
+                            <p className="jobPrice">Cost: {job.price}</p>
                         </div>
                     </div> 
                 
@@ -35,7 +34,7 @@ class activeListings extends Component {
         })
         return (
             <div className="container">
-                <h3 className="text-center py-3">Active Listings</h3>
+                <h3 className="text-left py-3">Your Active Listings</h3>
                 <div className="row">
                     {jobList}
                 </div>
