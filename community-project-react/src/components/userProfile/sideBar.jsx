@@ -5,8 +5,8 @@ import SideBarNav from "./sideBarNav"
 function sideBar() {
     return (
 
-        <div class="sidebar">
-            <div class="card-body">
+        <div className="sidebar">
+            <div className="card-body">
                 <SideBarNav title="Account Information" />
                 <SideBarNav title="Change Personal Information" />
                 <SideBarNav title="Current Jobs" />

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './headingBar.css'
 import 'bootstrap/dist/css/bootstrap.css';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 class headingBar extends Component {
 
@@ -33,9 +39,9 @@ class headingBar extends Component {
                  </div>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item active">
+                        <Link to="/">
                             <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                        </li>
+                        </Link>
                         <li className="nav-item">
                             <a className="nav-link" href="#">My Dashboard</a>
                         </li>
