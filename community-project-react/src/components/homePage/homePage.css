@@ -53,8 +53,7 @@
 }
 
 .card:hover {
-  border: 2px solid gray;
-  text-decoration: none;
+  background: #e8e8e8;
 }
 
 .cardBody {
@@ -69,6 +68,6 @@
   color: black;
 }
 
-.job {
+.job:hover {
   text-decoration: none;
 }
