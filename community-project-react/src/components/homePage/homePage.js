@@ -1,6 +1,8 @@
 import React, { Component } from '../../../node_modules/react';
 import './homePage.css';
-import 'bootstrap/dist/css/bootstrap.css';
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.bundle'
 
 class App extends Component {
 
@@ -26,29 +28,37 @@ class App extends Component {
   }
 
   render() {
-/*
-    <div className="jobCard">
-    <h4>{job.title}</h4>
-    <div className="cardBody">
-      <p className="jobDescription">{job.desc}</p>
-      <a href={job.id} className="btn btn-primary">View Job</a>
-    </div>
-    <div className="cardFooter">
-      <span className="jobLocation">Location: {job.loc}</span>
-      <span className="jobCost">Cost: {job.price}</span>
-    </div>
-  </div>
-  */
+    var locations = this.state.jobs
 
-    let jobList = this.state.jobs.map(job => {
+    var url = window.location.href.substring(29)
+    if(url == "1") {
+      locations = this.state.jobs.filter(function (jobs) {
+        return jobs.loc === "Macquarie Park";
+      });
+    } else if(url == "2") {
+      locations = this.state.jobs.filter(function (jobs) {
+        return jobs.loc === "Epping";
+      });
+    } else if(url == "3") {
+      locations = this.state.jobs.filter(function (jobs) {
+        return jobs.loc === "Lane Cove";
+      });
+    } else if(url == "4") {
+      locations = this.state.jobs.filter(function (jobs) {
+        return jobs.loc === "Chatswood";
+      });
+    }
+
+
+    let jobList = locations.map(job => {
       return (
         <a href={job.id} className="job">
-        <div class="jobCard">
-          <div class="card-body text-secondary">
-              <h5 class="card-title">{job.title}</h5>
-              <p class="card-text">{job.desc}</p>
+        <div className="card border-dark mb-3">
+          <div className="card-body text-dark">
+              <h5 className="card-title">{job.title}</h5>
+              <p className="card-text">{job.desc}</p>
           </div>
-          <div class="card-footer bg-transparent border-secondary">
+          <div className="card-footer bg-transparent border-dark">
             <p className="jobLocation">Location: {job.loc}</p>
             <p className="jobCost">Cost: {job.price}</p>
           </div>
@@ -56,15 +66,29 @@ class App extends Component {
         </a>
       );
     })
+    
     return (
       <div className="container">
-          <h3 className="text-center py-3 text-uppercase">Local Jobs</h3>
-          <div className="row">
-              {jobList}
+        <div className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Location
+          </button>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a className="dropdown-item" href="/filter=1">Macquarie Park</a>
+            <a className="dropdown-item" href="/filter=2">Epping</a>
+            <a className="dropdown-item" href="/filter=3">Lane Cove</a>
+            <a className="dropdown-item" href="/filter=4">Chatswood</a>
           </div>
+        </div>
+
+        <div className="row">
+            {jobList}
+        </div>
+
       </div>
     )
   }
+
 }
 
 export default App;
