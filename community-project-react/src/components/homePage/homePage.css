@@ -37,8 +37,12 @@
   }
 }
 
+.container {
+  margin-top: 15px;
+}
+
 .card {
-  width: 20vw;
+  width: 15vw;
   border: 2px solid gray;
   border-radius: 5px;
 
