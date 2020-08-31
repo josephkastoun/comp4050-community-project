@@ -1,3 +1,23 @@
 .card {
     width: 300px
 }
+
+.card:hover {
+    background: #e8e8e8;
+}
+
+.cardBody {
+    text-align: center;
+}
+  
+.jobLocation {
+    color: black;
+}
+  
+.jobPrice {
+    color: black;
+}
+  
+.job:hover {
+    text-decoration: none;
+}

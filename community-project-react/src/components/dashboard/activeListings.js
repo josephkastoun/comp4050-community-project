@@ -17,19 +17,18 @@ class activeListings extends Component {
     render() {
         let jobList = this.state.jobs.map(job => {    
             return (
+                <a href={job.id} className="job">
                     <div class="card border-dark mb-3">
                         <div class="card-body text-dark">
-                            <a href={job.id} className="job">
-                                <h5 class="card-title">{job.title}</h5>
-                            </a>
+                            <h5 class="card-title">{job.title}</h5>
                             <p class="card-text">{job.desc}</p>
                         </div>
-                        <div class="card-footer bg-transparent border-secondary">
+                        <div class="card-footer bg-transparent border-dark">
                             <p className="jobLocation">Location: {job.loc}</p>
                             <p className="jobPrice">Cost: {job.price}</p>
                         </div>
                     </div> 
-                
+                </a>  
             );
         })
         return (
