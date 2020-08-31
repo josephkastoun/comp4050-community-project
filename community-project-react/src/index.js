@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/homePage/homePage.js'
 import Dashboard from './components/dashboard/dashboard'
+import Header from './components/headingBar.jsx'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
