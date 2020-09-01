@@ -10,6 +10,8 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
 
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
