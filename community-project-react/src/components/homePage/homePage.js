@@ -1,14 +1,17 @@
-import React, { Component } from '../../../node_modules/react';
+import React, { Component , useState} from '../../../node_modules/react';
 import './homePage.css';
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 
-class App extends Component {
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
 
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      location: null,
       jobs: [
         { id: 1, title: 'Mow Lawn', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 30, loc: 'Macquarie Park'},
         { id: 2, title: 'Fix Door', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 20, loc: 'Epping'},
@@ -23,32 +26,26 @@ class App extends Component {
         { id: 12, title: 'Pickup Kids from School', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 20, loc: 'Chatswood'},
         { id: 13, title: 'Remove Tree Branch', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 25, loc: 'Epping'}
         
-    ]
+      ]
     };
   }
 
+  handleSelect (e) {
+    console.log(e);
+    this.setState({location : e})
+  }
+  
   render() {
     var locations = this.state.jobs
+    var locat = this.state.location
 
-    var url = window.location.href.substring(29)
-    if(url == "1") {
-      locations = this.state.jobs.filter(function (jobs) {
-        return jobs.loc === "Macquarie Park";
-      });
-    } else if(url == "2") {
-      locations = this.state.jobs.filter(function (jobs) {
-        return jobs.loc === "Epping";
-      });
-    } else if(url == "3") {
-      locations = this.state.jobs.filter(function (jobs) {
-        return jobs.loc === "Lane Cove";
-      });
-    } else if(url == "4") {
-      locations = this.state.jobs.filter(function (jobs) {
-        return jobs.loc === "Chatswood";
+    if(locat != null) {
+      locations = this.state.jobs.filter(function (job) {
+        return job.loc === locat;
       });
     }
 
+    
 
     let jobList = locations.map(job => {
       return (
@@ -69,23 +66,30 @@ class App extends Component {
     
     return (
       <div className="container">
-        <div className="dropdown">
-          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Location
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" href="/filter=1">Macquarie Park</a>
-            <a className="dropdown-item" href="/filter=2">Epping</a>
-            <a className="dropdown-item" href="/filter=3">Lane Cove</a>
-            <a className="dropdown-item" href="/filter=4">Chatswood</a>
-          </div>
-        </div>
+
+        <DropdownButton
+          alignRight
+          title="Location"
+          id="dropdown-menu-align-right"
+          variant="secondary"
+          onSelect={val => this.handleSelect(val)}
+        >
+          <Dropdown.Item eventKey="">All</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item eventKey="Macquarie Park">Macquarie Park</Dropdown.Item>
+          <Dropdown.Item eventKey="Epping">Epping</Dropdown.Item>
+          <Dropdown.Item eventKey="Lane Cove">Lane Cove</Dropdown.Item>
+          <Dropdown.Item eventKey="Chatswood">Chatswood</Dropdown.Item>
+        </DropdownButton>
+
+
 
         <div className="row">
             {jobList}
         </div>
 
       </div>
+
     )
   }
 
