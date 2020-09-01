@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { v4 as uuidv4 } from 'uuid';
 
 class jobDataFill extends Component {
 
@@ -39,7 +40,9 @@ class jobDataFill extends Component {
         url.searchParams.set("price", this.price.value)
         url.searchParams.set("location", this.location.value)
 
-        fetch(url)
+        fetch(url).then(this.jobid.value = uuidv4())
+
+
     }
 
     render() {
@@ -54,7 +57,7 @@ class jobDataFill extends Component {
                     </div>
                     <div className="form-group">
                         <label>Job ID</label>
-                        <input type="text" className="form-control" id="jobidInput" ref={(input) => this.jobid = input} placeholder="Enter Job ID"/>
+                        <input type="text" className="form-control" id="jobidInput" ref={(input) => this.jobid = input} placeholder="Enter Job ID" disabled value={uuidv4()}/>
                     </div>
                     <div className="form-group">
                         <label>Title</label>
