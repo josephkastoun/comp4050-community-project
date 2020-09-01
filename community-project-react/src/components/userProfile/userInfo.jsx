@@ -30,7 +30,7 @@ function userInfo() {
                                     <h5>Contact Information</h5>
                                     <p>Guest</p>
                                     <p>Guest123@gmail.com</p>
-                                    <Link to="/changeContact">Change Contact Information</Link>
+                                    <Link to="/changecontact">Change Contact Information</Link>
                                 </blockquote>
                             </div>
                         </div>  
@@ -39,7 +39,7 @@ function userInfo() {
                                 <blockquote className="blockquote mb-0">
                                     <h5>Address</h5>
                                     <p>123 sample st town</p>
-                                    <a href="#" className="card-link">Change address</a>
+                                    <Link to="/changeaddress">Change Address</Link>
                                 </blockquote>
                             </div>
                         </div>

@@ -1,0 +1,15 @@
+.changeContacts-Page {
+    display: flex;
+    background-color: rgb(236, 243, 247);
+  }
+
+.changeContact {
+    margin-top: 80px;
+    flex: 0.8;
+    margin-right: 100px;
+}
+
+
+
+
+

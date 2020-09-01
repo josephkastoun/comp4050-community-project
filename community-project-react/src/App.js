@@ -8,6 +8,7 @@ import {
 import UserProfile from "./components/userProfile/userProfile";
 import ChangeContact from "./components/userProfile/changeContact";
 import Header from "./components/headingBar";
+import ChangeAddress from "./components/userProfile/changeAddress";
 
 function App() {
     return(
@@ -20,6 +21,9 @@ function App() {
                     </Route>
                     <Route path="/changecontact">
                         <ChangeContact/>
+                    </Route>
+                    <Route path="/changeaddress">
+                        <ChangeAddress/>
                     </Route>
                     <Route path="/">
                         <h1>HomePage</h1>
