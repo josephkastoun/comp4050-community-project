@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
+
 class info extends Component {
 
     render() {
@@ -21,7 +22,6 @@ class info extends Component {
                 <p>$ {balance}</p>
                 <h6>Your Rating:</h6>
                 <p>{rating} / 5</p>
-                <a href="#">Your Profile:</a>
                 <br></br>
             </div>
         );
