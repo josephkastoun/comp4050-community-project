@@ -14,10 +14,28 @@ class headingBar extends Component {
         super(props);
      
         this.state = {
-            coins : 100,
-            username : "Joseph"
-
+            coins : 0,
+            guid : "0bc05630-d3e9-4ebd-bf76-d4ce43f2fbf1",
+            username : ""
         };
+    }
+
+    componentDidMount(){
+
+        fetch('http://localhost:3200/users')
+            .then( resp => resp.json())
+            .then((data)=> {
+                data.forEach((value, index) => {
+                    if(value.guid == this.state.guid){
+                        console.log(value.name)
+                        this.setState({
+                            coins: value.balance,
+                            username: value.name
+                        })
+                    }
+                })
+            })
+
     }
 
     componentDidUpdate(prevProps, prevState) {
