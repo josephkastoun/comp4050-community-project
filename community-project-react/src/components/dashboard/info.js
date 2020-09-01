@@ -12,6 +12,7 @@ class info extends Component {
 
         return (
             <div>
+                <br></br>
                 <h5>Hello {name},</h5>
                 <p>
                     Welcome to your Dashboard. Here you can see account details including money remaining, your rating, current jobs, active listings and your history.
