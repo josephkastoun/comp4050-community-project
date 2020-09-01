@@ -38,19 +38,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbname>?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-
-MongoClient.connect(uri, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("userData");
-  dbo.collection("users").find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    db.close();
-  });
-});
-
 
 module.exports = app;
