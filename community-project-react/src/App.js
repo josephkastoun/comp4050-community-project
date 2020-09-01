@@ -9,6 +9,8 @@ import UserProfile from "./components/userProfile/userProfile";
 import ChangeContact from "./components/userProfile/changeContact";
 import Header from "./components/headingBar";
 import ChangeAddress from "./components/userProfile/changeAddress";
+import HomePage from "./components/homePage/homePage"
+import Dashboard from "./components/dashboard/dashboard"
 
 function App() {
     return(
@@ -25,9 +27,13 @@ function App() {
                     <Route path="/changeaddress">
                         <ChangeAddress/>
                     </Route>
+
+                    <Route path="/dashboard">
+                        <Dashboard/>
+                    </Route>
+
                     <Route path="/">
-                        <h1>HomePage</h1>
-                        <Link to="/profile">profile</Link>
+                        <HomePage/>
                     </Route>
                 </Switch>
             </div>

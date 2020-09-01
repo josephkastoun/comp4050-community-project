@@ -18,8 +18,8 @@ class activeListings extends Component {
         let jobList = this.state.jobs.map(job => {    
             return (
                 <a href={job.id} className="job">
-                    <div class="card border-dark mb-3">
-                        <div class="card-body text-dark">
+                    <div class="card border-dark mb-3 dash-card">
+                        <div class="card-body text-dark dash-card-body">
                             <h5 class="card-title">{job.title}</h5>
                             <p class="card-text">{job.desc}</p>
                         </div>

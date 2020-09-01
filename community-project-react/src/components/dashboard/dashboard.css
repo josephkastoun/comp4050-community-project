@@ -1,12 +1,12 @@
-.card {
+.dash-card {
     width: 300px
 }
 
-.card:hover {
+.dash-card:hover {
     background: #e8e8e8;
 }
 
-.cardBody {
+.dash-card-body {
     text-align: center;
 }
   

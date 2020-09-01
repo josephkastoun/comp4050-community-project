@@ -37,11 +37,11 @@
   }
 }
 
-.container {
+.home-container {
   margin-top: 15px;
 }
 
-.card {
+.home-card {
   width: 15vw;
   border: 2px solid gray;
   border-radius: 5px;
@@ -56,11 +56,11 @@
   margin-left: 10px;
 }
 
-.card:hover {
+.home-card:hover {
   background: #e8e8e8;
 }
 
-.cardBody {
+.home-card-body {
   text-align: center;
 }
 

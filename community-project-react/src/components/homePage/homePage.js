@@ -53,8 +53,8 @@ class App extends Component {
     let jobList = locations.map(job => {
       return (
         <a href={job.id} className="job">
-        <div className="card border-dark mb-3">
-          <div className="card-body text-dark">
+        <div className="card border-dark mb-3 home-card">
+          <div className="card-body text-dark home-card-body">
               <h5 className="card-title">{job.title}</h5>
               <p className="card-text">{job.desc}</p>
           </div>
@@ -68,7 +68,7 @@ class App extends Component {
     })
     
     return (
-      <div className="container">
+      <div className="container home-container">
         <div className="dropdown">
           <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Location
