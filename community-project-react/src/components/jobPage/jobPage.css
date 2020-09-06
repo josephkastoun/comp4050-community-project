@@ -1,0 +1,33 @@
+
+.jobImage {
+width: 300px;
+height: 300px;
+margin-right: 10px;
+}
+
+.jobTitle {
+color: red;
+}
+.descriptionContainer {
+    display: flex;
+    flex-direction: row;
+}
+.container {
+    margin-top: 15px;
+  }
+
+  .sellerName {
+    font-size: 20;
+    color: black;
+  }
+.sellerDetails {
+    margin-top: 20px;
+}
+
+.sellerRating {
+    color: lightgrey;
+}
+
+.backButton {
+    color: rebeccapurple;
+}
