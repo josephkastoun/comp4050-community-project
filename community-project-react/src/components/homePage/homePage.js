@@ -1,7 +1,5 @@
 import React, { Component , useState} from '../../../node_modules/react';
-import {
-    Link
-  } from "react-router-dom";
+import {Link} from "react-router-dom";
 import './homePage.css';
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -10,7 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 
-class App extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,15 +50,15 @@ class App extends Component {
 
     let jobList = locations.map(job => {
       return (
-        <Link to={{pathname: "/job", state: { job: job}}}>
-        <div className="card border-dark mb-3">
-          <div className="card-body text-dark">
+        <Link className="job" to={{pathname: "/job", state: {job: job}}}>
+        <div className="homeCard border-dark mb-3">
+          <div className="homeCardBody text-dark">
               <h5 className="card-title">{job.title}</h5>
               <p className="card-text">{job.desc}</p>
           </div>
           <div className="card-footer bg-transparent border-dark">
-            <p className="jobLocation">Location: {job.loc}</p>
-            <p className="jobCost">Cost: {job.price}</p>
+            <p className="homeJobLocation">Location: {job.loc}</p>
+            <p className="homeJobCost">Cost: {job.price}</p>
           </div>
         </div>
         </Link>
@@ -68,7 +66,8 @@ class App extends Component {
     })
     
     return (
-      <div className="container">
+      <div className= "homePage">
+      <div className="homeContainer">
         <DropdownButton
           alignRight
           title="Location"
@@ -91,10 +90,11 @@ class App extends Component {
         </div>
 
       </div>
+      </div>
 
     )
   }
 
 }
 
-export default App;
+export default HomePage;

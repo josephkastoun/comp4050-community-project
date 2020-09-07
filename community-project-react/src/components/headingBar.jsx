@@ -61,10 +61,10 @@ class headingBar extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <Link to="/">
-                            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                            <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                         </Link>
                         <Link to="/dashboard">
-                            <a className="nav-link" href="#">My Dashboard</a>
+                            <a className="nav-link" href="/dashboard">My Dashboard</a>
                         </Link>
                         
                     </ul>
@@ -87,11 +87,13 @@ class headingBar extends Component {
                 <span className="coinsText navbar-text">
                          {this.state.username ? "Hello " + this.state.username + "!" : "Please Login"}
                     </span>
+                    <Link to="/profile">
                     {
                     this.state.imageURL == "" ? (<svg width="1em" height="1em" viewBox="0 0 16 16" className="userProfileIcon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>) : (<img src={this.state.imageURL} alt="profilePicture" height="40" width="40"/>)
                     }
+                    </Link>
                 </div>
             </nav>
         );

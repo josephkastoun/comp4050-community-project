@@ -11,6 +11,7 @@ import Header from "./components/headingBar";
 import ChangeAddress from "./components/userProfile/changeAddress";
 import HomePage from "./components/homePage/homePage"
 import Dashboard from "./components/dashboard/dashboard"
+import Job from "./components/jobPage/jobPage"
 
 function App() {
     return(
@@ -31,6 +32,11 @@ function App() {
                     <Route path="/dashboard">
                         <Dashboard/>
                     </Route>
+
+                    <Route path="/job">
+                        <Job/>
+                    </Route>
+                    
 
                     <Route path="/">
                         <HomePage/>

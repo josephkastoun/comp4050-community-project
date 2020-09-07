@@ -25,7 +25,7 @@ class Job extends Component {
       const job = this.props.location.state.job
       const seller = job.seller
       return (
-        <div className="container">
+        <div className="jobContainer">
             <div className="descriptionContainer">
 
                 <img className="jobImage" src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
