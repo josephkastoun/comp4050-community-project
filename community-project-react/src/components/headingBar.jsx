@@ -14,9 +14,11 @@ class headingBar extends Component {
         super(props);
      
         this.state = {
+            location : "",
             coins : 0,
             guid : "0bc05630-d3e9-4ebd-bf76-d4ce43f2fbf1",
-            username : ""
+            username : "",
+            imageURL : ""
         };
     }
 
@@ -25,12 +27,13 @@ class headingBar extends Component {
         fetch('http://localhost:3200/users')
             .then( resp => resp.json())
             .then((data)=> {
+                var rand = Math.floor(Math.random() * (80 - 0) ) + 0;
                 data.forEach((value, index) => {
-                    if(value.guid == this.state.guid){
-                        console.log(value.name)
+                    if(index == rand){
                         this.setState({
                             coins: value.balance,
-                            username: value.name
+                            username: value.name,
+                            imageURL: "https://robohash.org/" + value.guid + "?set=set3"
                         })
                     }
                 })
@@ -39,7 +42,7 @@ class headingBar extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        
+
     }   
     
 
@@ -47,7 +50,7 @@ class headingBar extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                  <div className="logoDiv">
-                    <a className="logoDiv navbar-brand" href="#">
+                    <a className="logoDiv navbar-brand" href="/">
                     <svg width="30" height="30" viewBox="0 0 16 16" className="mainLogo d-inline-block align-top" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
                         <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
@@ -84,11 +87,11 @@ class headingBar extends Component {
                 <span className="coinsText navbar-text">
                          {this.state.username ? "Hello " + this.state.username + "!" : "Please Login"}
                     </span>
-                    <Link to="/profile">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" className="userProfileIcon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        </svg>
-                    </Link>
+                    {
+                    this.state.imageURL == "" ? (<svg width="1em" height="1em" viewBox="0 0 16 16" className="userProfileIcon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>) : (<img src={this.state.imageURL} alt="profilePicture" height="40" width="40"/>)
+                    }
                 </div>
             </nav>
         );

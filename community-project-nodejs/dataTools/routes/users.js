@@ -16,6 +16,9 @@ router.get('/', function(req, res, next) {
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
     var dbo = db.db("userData");
+
+    let name = req.query.name;
+
     dbo.collection("users").find({}).toArray(function(err, result) {
       if (err) throw err;
       file = JSON.parse(JSON.stringify(result))
