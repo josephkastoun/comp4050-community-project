@@ -11,7 +11,7 @@ import Header from "./components/headingBar";
 import ChangeAddress from "./components/userProfile/changeAddress";
 import HomePage from "./components/homePage/homePage"
 import Dashboard from "./components/dashboard/dashboard"
-import Job from "./components/jobPage/jobPage"
+import JobPage from "./components/jobPage/jobPage"
 
 function App() {
     return(
@@ -33,9 +33,7 @@ function App() {
                         <Dashboard/>
                     </Route>
 
-                    <Route path="/job">
-                        <Job/>
-                    </Route>
+                    <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
                     
 
                     <Route path="/">
