@@ -8,13 +8,35 @@ class headingBar extends Component {
         super(props);
      
         this.state = {
-            coins : 100,
-            username : "Joseph"
+            location : "",
+            coins : 0,
+            guid : "0bc05630-d3e9-4ebd-bf76-d4ce43f2fbf1",
+            username : "",
+            imageURL : ""
         };
     }
 
+    componentDidMount(){
+
+        fetch('http://localhost:3200/users')
+            .then( resp => resp.json())
+            .then((data)=> {
+                var rand = Math.floor(Math.random() * (80 - 0) ) + 0;
+                data.forEach((value, index) => {
+                    if(index == rand){
+                        this.setState({
+                            coins: value.balance,
+                            username: value.name,
+                            imageURL: "https://robohash.org/" + value.guid + "?set=set3"
+                        })
+                    }
+                })
+            })
+
+    }
+
     componentDidUpdate(prevProps, prevState) {
-        
+
     }   
     
 
@@ -58,9 +80,11 @@ class headingBar extends Component {
                 <span className="coinsText navbar-text">
                          {this.state.username ? "Hello " + this.state.username + "!" : "Please Login"}
                     </span>
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" className="userProfileIcon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    {
+                    this.state.imageURL == "" ? (<svg width="1em" height="1em" viewBox="0 0 16 16" className="userProfileIcon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    </svg>
+                    </svg>) : (<img src={this.state.imageURL} alt="profilePicture" height="40" width="40"/>)
+                    }
                 </div>
             </nav>
         );
