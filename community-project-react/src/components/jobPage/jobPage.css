@@ -1,0 +1,40 @@
+
+.jobImage {
+width: 300px;
+height: 300px;
+margin-right: 10px;
+}
+
+.jobTitle {
+color: black;
+}
+.descriptionContainer {
+    display: flex;
+    flex-direction: row;
+}
+.container {
+    margin-top: 15px;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
+    background: lightgrey;
+    padding-top:1%;
+  }
+
+  .sellerName {
+    font-size: 20;
+    color: black;
+  }
+.sellerDetails {
+    margin-top: 20px;
+}
+
+.sellerRating {
+    color: lightgrey;
+}
+
+.backButton {
+    color: rebeccapurple;
+    border-radius: 25px;
+    margin-bottom: 2%;
+}

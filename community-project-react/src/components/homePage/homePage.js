@@ -1,4 +1,7 @@
 import React, { Component , useState} from '../../../node_modules/react';
+import {
+    Link
+  } from "react-router-dom";
 import './homePage.css';
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -49,9 +52,9 @@ class App extends Component {
 
     let jobList = locations.map(job => {
       return (
-        <a href={job.id} className="job">
-        <div className="card border-dark mb-3 home-card">
-          <div className="card-body text-dark home-card-body">
+        <Link to={{pathname: "/job", state: { job: job}}}>
+        <div className="card border-dark mb-3">
+          <div className="card-body text-dark">
               <h5 className="card-title">{job.title}</h5>
               <p className="card-text">{job.desc}</p>
           </div>
@@ -60,13 +63,12 @@ class App extends Component {
             <p className="jobCost">Cost: {job.price}</p>
           </div>
         </div>
-        </a>
+        </Link>
       );
     })
     
     return (
       <div className="container">
-
         <DropdownButton
           alignRight
           title="Location"
