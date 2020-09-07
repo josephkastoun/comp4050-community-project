@@ -43,12 +43,14 @@ class Job extends Component {
             </div>
             
             <div className="sellerDetails">
-                <p className="sellerName">John Doe   <span className="sellerRating">4.5</span></p>
+                <p className="sellerName">John Doe</p>  <p><span className="sellerRating">4.5/5</span></p>
             </div>
 
             <Link to="/">
-                <div className="backButton">
-                    Go Back
+               <div class="wrap">
+                    <button className="backButton" >
+                      Go Back
+                    </button>
                 </div>
             </Link>
         </div>
