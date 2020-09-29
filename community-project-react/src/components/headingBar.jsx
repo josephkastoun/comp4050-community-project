@@ -16,7 +16,7 @@ class headingBar extends Component {
         this.state = {
             location : "",
             coins : 0,
-            guid : "add954a1-db0d-43ef-a466-cc8850ef690e",
+            _id : "5f728be96d252648c48c2fda",
             username : "",
             imageURL : ""
         };
@@ -27,13 +27,12 @@ class headingBar extends Component {
         fetch('http://localhost:3200/users')
             .then( resp => resp.json())
             .then((data)=> {
-                var rand = Math.floor(Math.random() * (80 - 0) ) + 0;
                 data.forEach((value, index) => {
-                    if(this.state.guid == value.guid){
+                    if(this.state._id == value._id){
                         this.setState({
                             coins: value.balance,
                             username: value.name,
-                            imageURL: "https://robohash.org/" + value.guid + "?set=set3"
+                            imageURL: value.picture
                         })
                     }
                 })

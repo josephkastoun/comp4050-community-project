@@ -11,8 +11,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 function createDynamicObj(obj){
     var newObj = {}
 
-    console.log(obj);
-
     Object.keys(obj).forEach(function(key,index) {
         if(obj[key]){
             newObj[key] = obj[key]
@@ -33,7 +31,7 @@ router.get('/', function(req, res, next) {
 
     let replaceID = req.query.replaceID;
     let userID = req.query.userID;
-    let jobID = req.query.jobID;
+    let _id = req.query._id;
     let jobStatus = req.query.jobStatus;
 
     let title = req.query.title;
@@ -47,7 +45,7 @@ router.get('/', function(req, res, next) {
 
     var obj = {
         userID : userID,
-        jobID: jobID,
+        _id: _id,
         jobStatus: parseInt(jobStatus),
         title: title,
         description: description,
@@ -57,10 +55,16 @@ router.get('/', function(req, res, next) {
 
     if(add){
 
+        Object.keys(obj).forEach(function(key,index) {
+            if(obj[key] == null || obj[key] == NaN){
+                res.send("Missing parameter " + key)
+                return;
+            }
+        });
+
         MongoClient.connect(uri, function(err, db) {
             if (err) throw err;
             var dbo = db.db("userData");
-
 
             dbo.collection("jobs").insertOne(obj
             , (err, resuly) => {
@@ -99,12 +103,17 @@ router.get('/', function(req, res, next) {
             }
         });
 
-        dbo.collection("jobs").findOneAndReplace({replaceID: replaceID}, obj).toArray(function(err, result) {
+        MongoClient.connect(uri, function(err, db) {
             if (err) throw err;
-            file = JSON.parse(JSON.stringify(result))
-            res.send(file)
-            db.close();
-          });
+            var dbo = db.db("userData");
+
+            dbo.collection("jobs").findOneAndReplace({replaceID: replaceID}, obj).toArray(function(err, result) {
+                if (err) throw err;
+                file = JSON.parse(JSON.stringify(result))
+                res.send(file)
+                db.close();
+            });
+        });
     }
 
 
