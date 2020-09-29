@@ -2,17 +2,25 @@
  
 }
 
+.dropdown{
+  padding: 10px;
+}
+
 .homeContainer {
-  padding-top: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70em;
+  padding: 15px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
 }
 
 .homeCard {
-  width: 15vw;
+  width: 23vw;
+  min-height: 18vh;
   border: 2px solid gray;
   border-radius: 5px;
+
 
   margin-top: 10px;
   margin-right: 10px;

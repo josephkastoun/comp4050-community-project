@@ -13,7 +13,10 @@ import HomePage from "./components/homePage/homePage"
 import Dashboard from "./components/dashboard/dashboard"
 import JobPage from "./components/jobPage/jobPage"
 
+
+
 function App() {
+    
     return(
         <Router>
             <Header/>

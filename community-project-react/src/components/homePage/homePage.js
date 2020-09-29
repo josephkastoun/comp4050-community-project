@@ -26,7 +26,6 @@ class HomePage extends Component {
         { id: 11, title: 'Vacuum Carpets', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 10, loc: 'Epping'},
         { id: 12, title: 'Pickup Kids from School', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 20, loc: 'Chatswood'},
         { id: 13, title: 'Remove Tree Branch', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 25, loc: 'Epping'}
-        
       ]
     };
   }
@@ -67,7 +66,6 @@ class HomePage extends Component {
     
     return (
       <div className= "homePage">
-      <div className="homeContainer">
         <DropdownButton
           alignRight
           title="Location"
@@ -82,6 +80,8 @@ class HomePage extends Component {
           <Dropdown.Item eventKey="Lane Cove">Lane Cove</Dropdown.Item>
           <Dropdown.Item eventKey="Chatswood">Chatswood</Dropdown.Item>
         </DropdownButton>
+      <div className="homeContainer">
+        
 
 
 

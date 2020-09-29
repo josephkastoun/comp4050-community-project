@@ -16,7 +16,7 @@ class headingBar extends Component {
         this.state = {
             location : "",
             coins : 0,
-            guid : "0bc05630-d3e9-4ebd-bf76-d4ce43f2fbf1",
+            guid : "add954a1-db0d-43ef-a466-cc8850ef690e",
             username : "",
             imageURL : ""
         };
@@ -29,7 +29,7 @@ class headingBar extends Component {
             .then((data)=> {
                 var rand = Math.floor(Math.random() * (80 - 0) ) + 0;
                 data.forEach((value, index) => {
-                    if(index == rand){
+                    if(this.state.guid == value.guid){
                         this.setState({
                             coins: value.balance,
                             username: value.name,
