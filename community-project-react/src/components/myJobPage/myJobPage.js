@@ -1,10 +1,10 @@
 
 import React, { Component , useState} from '../../../node_modules/react';
-import './jobPage.css';import {
+import './myJobPage.css';import {
     Link
   } from "react-router-dom";
 
-class Job extends Component {
+class MyJob extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,10 +42,10 @@ class Job extends Component {
                 </div>
             </div>
 
-            <Link to="/">
+            <Link to="/dashboard">
                <div class="wrap">
-                    <button className="applyButton" >
-                      Apply for Job
+                    <button className="editButton" >
+                      Edit
                     </button>
                 </div>
             </Link>
@@ -54,7 +54,7 @@ class Job extends Component {
                 <p className="sellerName">John Doe</p>  <p><span className="sellerRating">4.5/5</span></p>
             </div>
 
-            <Link to="/">
+            <Link to="/dashboard">
                <div class="wrap">
                     <button className="backButton" >
                       Go Back
@@ -65,4 +65,4 @@ class Job extends Component {
     )}
 }
 
-export default Job;
+export default MyJob;

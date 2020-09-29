@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 class currentJobs extends Component {
 
@@ -17,7 +18,7 @@ class currentJobs extends Component {
     render() {
         let jobList = this.state.jobs.map(job => {    
             return (
-                <a href={job.id} className="job">
+                <Link className="job" to={{pathname: "/myjob", state: {job: job}}}>
                     <div class="card border-dark mb-3 dash-card">
                         <div class="card-body text-dark dash-card-body">
                             <h5 class="card-title">{job.title}</h5>
@@ -28,7 +29,7 @@ class currentJobs extends Component {
                             <p className="jobPrice">Cost: {job.price}</p>
                         </div>
                     </div> 
-                </a>
+                </Link>
             );
         })
         return (
