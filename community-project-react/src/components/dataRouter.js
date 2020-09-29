@@ -42,11 +42,7 @@ class dataRouter extends Component {
         this.setState({location : e})
     }
 
-    /*
-    componentDidMount() {
-        console.log("This. ", this.props.location.state.job)
-    }
-    */
+    /* */
 
     render() {
         return (
