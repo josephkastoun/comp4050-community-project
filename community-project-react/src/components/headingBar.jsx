@@ -16,7 +16,7 @@ class headingBar extends Component {
         this.state = {
             location : "",
             coins : 0,
-            _id : "5f728be96d252648c48c2fda",
+            _id : "5f728f406d252648c48c303e",
             username : "",
             imageURL : ""
         };
@@ -24,7 +24,7 @@ class headingBar extends Component {
 
     componentDidMount(){
 
-        fetch('http://localhost:3200/users')
+        fetch('http://localhost:3200/users?fetch=true')
             .then( resp => resp.json())
             .then((data)=> {
                 data.forEach((value, index) => {
