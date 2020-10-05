@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 const { finished } = require('stream');
+const ObjectID = require('mongodb').ObjectID
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -47,7 +48,7 @@ router.get('/', function(req, res, next) {
 
     var obj = {
         _id: _id,
-        userID : userID,
+        userID : ObjectID(userID),
         jobStatus: parseInt(jobStatus),
         chosenUserID: chosenUserID,
         title: title,
