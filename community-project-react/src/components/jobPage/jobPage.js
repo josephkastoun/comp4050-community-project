@@ -12,11 +12,12 @@ class Job extends Component {
     }
   }
 
-  handleSelect (e) {
+  handleSelect(e) {
     console.log(e);
     this.setState({location : e})
   }
 
+  
   componentDidMount() {
       console.log("This. ", this.props.location.state.job)
   }
