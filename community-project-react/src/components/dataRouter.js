@@ -67,7 +67,7 @@ class dataRouter extends Component {
                     <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
 
                     <Route path="/">
-                        <HomePage/>
+                        <HomePage jobs={this.state.jobs}/>
                     </Route>
                 </Switch>
             </div>
