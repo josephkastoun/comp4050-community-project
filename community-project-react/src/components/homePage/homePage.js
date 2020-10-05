@@ -13,22 +13,20 @@ class HomePage extends Component {
     super(props);
     this.state = {
       location: null,
-      jobs: [
-        { id: 1, title: 'Mow Lawn', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 30, loc: 'Macquarie Park'},
-        { id: 2, title: 'Fix Door', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 20, loc: 'Epping'},
-        { id: 3, title: 'Paint Wall', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 20, loc: 'Macquarie Park'},
-        { id: 4, title: 'Lift to Train Station', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 10, loc: 'Macquarie Park'},
-        { id: 5, title: 'Pack Boxes', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 35, loc: 'Epping'},
-        { id: 6, title: 'Walk Dogs', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 25, loc: 'Macquarie Park'},
-        { id: 7, title: 'Clean Gutters', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 40, loc: 'Lane Cove'},
-        { id: 9, title: 'Install/Setup New TV', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 15, loc: 'Macquarie Park'},
-        { id: 10, title: 'Wash Car', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 10, loc: 'Lane Cove'},
-        { id: 11, title: 'Vacuum Carpets', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 10, loc: 'Epping'},
-        { id: 12, title: 'Pickup Kids from School', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 20, loc: 'Chatswood'},
-        { id: 13, title: 'Remove Tree Branch', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price: 25, loc: 'Epping'}
-      ]
+      jobs: []
     };
   }
+
+  componentDidMount(){
+    fetch('http://localhost:3200/jobs?fetch=true')
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({
+                jobs: data
+            })
+        })
+
+}
 
   handleSelect (e) {
     console.log(e);
@@ -41,7 +39,7 @@ class HomePage extends Component {
 
     if(locat != null) {
       locations = this.state.jobs.filter(function (job) {
-        return job.loc === locat;
+        return job.location === locat;
       });
     }
 
@@ -53,10 +51,10 @@ class HomePage extends Component {
         <div className="homeCard border-dark mb-3">
           <div className="homeCardBody text-dark">
               <h5 className="card-title">{job.title}</h5>
-              <p className="card-text">{job.desc}</p>
+              <p className="card-text">{job.description}</p>
           </div>
           <div className="card-footer bg-transparent border-dark">
-            <p className="homeJobLocation">Location: {job.loc}</p>
+            <p className="homeJobLocation">Location: {job.location}</p>
             <p className="homeJobCost">Cost: {job.price}</p>
           </div>
         </div>
