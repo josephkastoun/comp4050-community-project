@@ -32,9 +32,10 @@ class jobDataFill extends Component {
         event.preventDefault();
 
         let url = new URL("http://localhost:3200/jobs?add=true")
-        url.searchParams.set("userID", this.uid.value)
-        url.searchParams.set("jobID", this.jobid.value)
+        url.searchParams.set("id", this._id.value)
+        url.searchParams.set("userID", this.userID.value)
         url.searchParams.set("jobStatus", this.jobStatus.value)
+        url.searchParams.set("chosenUserId", this.chosenUserID.value)
         url.searchParams.set("title", this.title.value)
         url.searchParams.set("description", this.desc.value)
         url.searchParams.set("price", this.price.value)
@@ -49,41 +50,55 @@ class jobDataFill extends Component {
         return (
             <div style={{margin : "10px"}}>
                 <form onSubmit={a => this.submitData(a)}>
+
                     <div className="form-group">
-                        <label>User ID</label>
-                        <select className="form-control form-control-sm" id="jobStatusInput" ref={(input) => this.uid = input}>
+                        <label>_id</label>
+                        <select className="form-control form-control-sm" id="job_idInput" ref={(input) => this._id = input}>
                             {this.state.users.map((val, ind) => (<option>{val}</option>))}
                         </select>
                     </div>
+
                     <div className="form-group">
-                        <label>Job ID</label>
-                        <input type="text" className="form-control" id="jobidInput" ref={(input) => this.jobid = input} placeholder="Enter Job ID" disabled value={uuidv4()}/>
+                        <label>userID</label>
+                        <input type="text" className="form-control" id="jobUserIDInput" ref={(input) => this.userID = input} placeholder="Enter User ID" disabled value={uuidv4()}/>
                     </div>
+
+                    <div className="form-group">
+                        <label>jobStatus</label>
+                        <select className="form-control form-control-sm" id="jobStatusInput" ref={(input) => this.jobStatus = input}>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+                        <label>chosenUserID</label>
+                        <input type="text" className="form-control" id="jobChosenUserIDInput" ref={(input) => this.chosenUserID = input} placeholder="Enter User ID" disabled value={uuidv4()}/>
+                    </div>
+
                     <div className="form-group">
                         <label>Title</label>
                         <input type="text" className="form-control" id="titleInput" ref={(input) => this.title = input} placeholder="Enter Title"/>
                     </div>
+
                     <div className="form-group">
                         <label>Description</label>
                         <input type="text" className="form-control" id="descInput" ref={(input) => this.desc = input} placeholder="Enter Description"/>
-                    </div>
-                    <div className="form-group">
-                    <label>Job Status</label>
-                    <select className="form-control form-control-sm" id="jobStatusInput" ref={(input) => this.jobStatus = input}>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                    </select>
-                    </div>
+                    </div>                   
+
                     <div className="form-group">
                         <label>Job Price</label>
                         <input type="number" className="form-control" id="priceInput" placeholder="Enter Price" ref={(input) => this.price = input}/>
                     </div>
+
                     <div className="form-group">
                         <label>Location</label>
                         <input type="text" className="form-control" id="locationInput" placeholder="Enter Location" ref={(input) => this.location = input}/>
                     </div>
+
                     <button type="submit" className="btn btn-primary">Submit</button>
+
                 </form>
             </div>
         );
