@@ -23,6 +23,9 @@ function createDynamicObj(obj){
 router.get('/', function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
+    let fetch = req.query.fetch;
+    let add = req.query.add;
+
     let _id = req.query._id;
     let balance = req.query.balance;
     let picture = req.query.picture;
@@ -30,35 +33,56 @@ router.get('/', function(req, res, next) {
     let email = req.query.email;
     let address = req.query.address;
     let about = req.query.about;
-    let registered = req.query.registered;
 
     var obj = {
       _id: _id,
       name: name,
-      balance: parseInt(balance),
+      balance: balance,
       picture: picture,
       email: email,
       address: address,
-      about: about,
-      registered : registered
+      about: about
   };
 
   
-
-  MongoClient.connect(uri, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("userData");
-
-    dbo.collection("users").find(createDynamicObj(obj)).toArray(function(err, result) {
+  if(fetch){
+    MongoClient.connect(uri, function(err, db) {
       if (err) throw err;
-      file = JSON.parse(JSON.stringify(result))
-      res.send(file)
-      db.close();
+      var dbo = db.db("userData");
+
+      dbo.collection("users").find(createDynamicObj(obj)).toArray(function(err, result) {
+        if (err) throw err;
+        file = JSON.parse(JSON.stringify(result))
+        res.send(file)
+        db.close();
+      });
+
+    });
+  }
+
+  if(add){
+    Object.keys(obj).forEach(function(key,index) {
+      if((obj[key] == null || obj[key] == NaN) && key != "_id"){
+          res.send("Missing parameter " + key)
+          return;
+      }
     });
 
-  });
+    MongoClient.connect(uri, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("userData");
 
-  //res.send('respond with a resource');
+      dbo.collection("users").insertOne(obj
+        , (err, result) => {
+            if (err) throw err;
+            res.send("Added user" + obj.name + "successfully")
+            db.close();
+        })
+
+    });
+  }
+
+  
 });
 
 module.exports = router;
