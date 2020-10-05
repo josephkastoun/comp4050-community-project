@@ -42,8 +42,6 @@ class jobDataFill extends Component {
         url.searchParams.set("location", this.location.value)
 
         fetch(url).then(this.jobid.value = uuidv4())
-
-
     }
 
     render() {

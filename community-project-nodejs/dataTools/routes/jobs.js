@@ -56,7 +56,7 @@ router.get('/', function(req, res, next) {
 
     var obj = {
         _id: _id,
-        userID : ObjectID(userID),
+        userID : userID ? ObjectID(userID) : null,
         jobStatus: parseInt(jobStatus),
         chosenUserID: chosenUserID,
         title: title,
