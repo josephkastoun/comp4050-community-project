@@ -13,6 +13,8 @@ import HomePage from "./components/homePage/homePage"
 import Dashboard from "./components/dashboard/dashboard"
 import JobPage from "./components/jobPage/jobPage"
 import MyJobPage from "./components/myJobPage/myJobPage"
+import Login from "./components/login/login"
+import Register from "./components/login/register"
 
 
 
@@ -23,6 +25,11 @@ function App() {
             <Header/>
             <div className="app"> 
                 <Switch>
+
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/login" component={Login} />
+
+
                     <Route path="/profile">
                         <UserProfile/>
                     </Route>
