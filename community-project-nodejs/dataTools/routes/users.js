@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require("fs"), json;
 var path = require('path');
+const ObjectID = require('mongodb').ObjectID
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -35,7 +36,7 @@ router.get('/', function(req, res, next) {
     let about = req.query.about;
 
     var obj = {
-      _id: _id,
+      _id: ObjectID(_id),
       name: name,
       balance: balance,
       picture: picture,
