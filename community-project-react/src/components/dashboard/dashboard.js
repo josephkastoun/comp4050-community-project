@@ -9,6 +9,13 @@ import Info from './info';
 
 
 class dashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          location: null
+        };
+      }
+
     render() {
         return (
             <div>
@@ -19,7 +26,7 @@ class dashboard extends Component {
                         </div>
                         <div class="col-lg">
                             <Info />
-                            <CurrentJobs />
+                            <CurrentJobs jobs={this.props.jobs} userID={this.props.userID}/>
                             <ActiveListings />
                             <History />
                         </div>

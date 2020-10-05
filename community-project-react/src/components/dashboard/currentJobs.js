@@ -7,7 +7,6 @@ class currentJobs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userID: '5f7ba39ca1e5d43538018163',
             jobs: []
         };
     }

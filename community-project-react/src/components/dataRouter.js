@@ -19,6 +19,7 @@ class dataRouter extends Component {
         super(props);
         this.state = {
           location: null,
+          userID: '5f7ba39ca1e5d43538018163',
           jobs: []
         };
     }
@@ -59,13 +60,13 @@ class dataRouter extends Component {
                     </Route>
 
                     <Route path="/dashboard">
-                        <Dashboard/>
+                        <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>
                     </Route>
 
                     <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
 
                     <Route path="/">
-                        <HomePage jobs={this.state.jobs}/>
+                        <HomePage jobs={this.state.jobs} userID={this.state.userID}/>
                     </Route>
                 </Switch>
             </div>
