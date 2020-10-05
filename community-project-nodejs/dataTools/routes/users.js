@@ -36,7 +36,7 @@ router.get('/', function(req, res, next) {
     let about = req.query.about;
 
     var obj = {
-      _id: ObjectID(_id),
+      _id : userID ? ObjectID(_id) : null,
       name: name,
       balance: balance,
       picture: picture,

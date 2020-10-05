@@ -9,6 +9,14 @@ const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbn
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 
+/*
+jobStatus states:
+
+0 - Seeking a person to complete a job
+1 - Found a user to complete a job
+2 - Job is completed
+*/
+
 function createDynamicObj(obj){
     var newObj = {}
 
@@ -48,7 +56,7 @@ router.get('/', function(req, res, next) {
 
     var obj = {
         _id: _id,
-        userID : ObjectID(userID),
+        userID : userID ? ObjectID(userID) : null,
         jobStatus: parseInt(jobStatus),
         chosenUserID: chosenUserID,
         title: title,

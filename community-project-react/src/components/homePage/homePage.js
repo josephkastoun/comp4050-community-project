@@ -17,7 +17,6 @@ class HomePage extends Component {
   }
 
   handleSelect (e) {
-    console.log(e);
     this.setState({location : e})
   }
   

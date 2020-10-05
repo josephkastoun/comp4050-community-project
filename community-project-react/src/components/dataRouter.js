@@ -32,7 +32,6 @@ class dataRouter extends Component {
                     jobs: data
                 })
             })
-    
     }
 
 
