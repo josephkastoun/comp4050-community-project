@@ -34,6 +34,7 @@ router.get('/', function(req, res, next) {
     let userID = req.query.userID;
     let _id = req.query._id;
     let jobStatus = req.query.jobStatus;
+    let chosenUserID = req.query.chosenUserID;
 
     let title = req.query.title;
     let description = req.query.description;
@@ -48,6 +49,7 @@ router.get('/', function(req, res, next) {
         _id: _id,
         userID : userID,
         jobStatus: parseInt(jobStatus),
+        chosenUserID: chosenUserID,
         title: title,
         description: description,
         price: parseInt(price),

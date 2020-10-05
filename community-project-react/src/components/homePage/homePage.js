@@ -12,21 +12,9 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: null,
-      jobs: []
+      location: null
     };
   }
-
-  componentDidMount(){
-    fetch('http://localhost:3200/jobs?fetch=true')
-        .then( resp => resp.json())
-        .then((data)=> {
-            this.setState({
-                jobs: data
-            })
-        })
-
-}
 
   handleSelect (e) {
     console.log(e);
@@ -34,11 +22,11 @@ class HomePage extends Component {
   }
   
   render() {
-    var locations = this.state.jobs
+    var locations = this.props.jobs
     var locat = this.state.location
 
     if(locat != null) {
-      locations = this.state.jobs.filter(function (job) {
+      locations = this.props.jobs.filter(function (job) {
         return job.location === locat;
       });
     }
