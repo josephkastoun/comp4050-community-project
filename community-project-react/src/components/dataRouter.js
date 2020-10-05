@@ -12,6 +12,7 @@ import ChangeAddress from "./userProfile/changeAddress";
 import HomePage from "./homePage/homePage"
 import Dashboard from "./dashboard/dashboard"
 import JobPage from "./jobPage/jobPage"
+import JobDataFill from "./dataFill/dataFillPage"
 
 class dataRouter extends Component {
 
@@ -56,6 +57,10 @@ class dataRouter extends Component {
                     </Route>
                     <Route path="/changeaddress">
                         <ChangeAddress/>
+                    </Route>
+
+                    <Route path="/datafill">
+                        <JobDataFill/>
                     </Route>
 
                     <Route path="/dashboard">

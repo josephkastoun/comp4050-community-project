@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './dashboard.css';
 
@@ -26,8 +27,9 @@ class dashboard extends Component {
                         </div>
                         <div class="col-lg">
                             <Info />
+                            <Link to="/datafill">Fill Data</Link>
                             <CurrentJobs jobs={this.props.jobs} userID={this.props.userID}/>
-                            <ActiveListings />
+                            <ActiveListings jobs={this.props.jobs} userID={this.props.userID}/>
                             <History />
                         </div>
                         <div class="col-">

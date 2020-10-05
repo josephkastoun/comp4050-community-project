@@ -11,6 +11,7 @@ class currentJobs extends Component {
         };
     }
 
+    /*
     componentDidMount(){
         fetch('http://localhost:3200/jobs?fetch=true&userID=5f728f406d252648c48c3063')
             .then( resp => resp.json())
@@ -21,6 +22,7 @@ class currentJobs extends Component {
             })
     
     }
+    */
 
     render() {
         let jobList = this.state.jobs.map(job => {    
