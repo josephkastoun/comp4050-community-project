@@ -7,6 +7,7 @@ import ActiveListings from './activeListings';
 import CurrentJobs from './currentJobs';
 import History from './history';
 import Info from './info';
+import Datafill from '../dataFill/dataFillPage';
 
 
 class dashboard extends Component {
@@ -27,7 +28,7 @@ class dashboard extends Component {
                         </div>
                         <div class="col-lg">
                             <Info />
-                            <Link to="/datafill">Fill Data</Link>
+                            <Link to={"dataFill"} >Fill Data</Link>
                             <CurrentJobs jobs={this.props.jobs} userID={this.props.userID}/>
                             <ActiveListings jobs={this.props.jobs} userID={this.props.userID}/>
                             <History />
