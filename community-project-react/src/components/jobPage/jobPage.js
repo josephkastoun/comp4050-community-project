@@ -11,15 +11,6 @@ class Job extends Component {
 
     }
   }
-
-  handleSelect (e) {
-    console.log(e);
-    this.setState({location : e})
-  }
-
-  componentDidMount() {
-      console.log("This. ", this.props.location.state.job)
-  }
   
   render() {
       const job = this.props.location.state.job
@@ -34,10 +25,10 @@ class Job extends Component {
                         {job.title}
                     </h3>
                     <h6>
-                        Location: {job.loc}
+                        Location: {job.location}
                     </h6>
                     <p>
-                        {job.desc}
+                        {job.description}
                     </p>
                 </div>
             </div>
@@ -51,7 +42,7 @@ class Job extends Component {
             </Link>
             
             <div className="sellerDetails">
-                <p className="sellerName">John Doe</p>  <p><span className="sellerRating">4.5/5</span></p>
+                <p className="sellerName">{job.userID}</p>  <p><span className="sellerRating">4.5/5</span></p>
             </div>
 
             <Link to="/">

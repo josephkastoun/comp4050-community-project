@@ -2,15 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require("fs"), json;
 var path = require('path');
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const keys = require("../config/keys");
-
-// Load input validation
-const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
-// Load User model
-const User = require("../models/User");
+const ObjectID = require('mongodb').ObjectID
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -44,7 +36,7 @@ router.get('/', function(req, res, next) {
     let about = req.query.about;
 
     var obj = {
-      _id: _id,
+      _id : userID ? ObjectID(_id) : null,
       name: name,
       balance: balance,
       picture: picture,

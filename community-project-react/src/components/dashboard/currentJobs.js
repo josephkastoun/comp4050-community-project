@@ -6,26 +6,19 @@ class currentJobs extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            jobs: [
-                {id: 1, title:'Current job 1', desc: 'Description for current job 1', price: 10, loc: 'Macquarie Park'},
-                {id: 2, title:'Current job 2', desc: 'Description for current job 2', price: 20, loc: 'Macquarie University'},
-                {id: 3, title:'Current job 3', desc: 'Description for current job 3', price: 30, loc: 'Chatswood'},
-            ]  
-        };
     }
 
     render() {
-        let jobList = this.state.jobs.map(job => {    
+        let jobList = this.props.jobs.map(job => {    
             return (
                 <Link className="job" to={{pathname: "/myjob", state: {job: job}}}>
                     <div class="card border-dark mb-3 dash-card">
                         <div class="card-body text-dark dash-card-body">
                             <h5 class="card-title">{job.title}</h5>
-                            <p class="card-text">{job.desc}</p>
+                            <p class="card-text">{job.description}</p>
                         </div>
                         <div class="card-footer bg-transparent border-dark">
-                            <p className="jobLocation">Location: {job.loc}</p>
+                            <p className="jobLocation">Location: {job.location}</p>
                             <p className="jobPrice">Cost: {job.price}</p>
                         </div>
                     </div> 
