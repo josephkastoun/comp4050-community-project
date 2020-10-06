@@ -61,7 +61,7 @@ class dataRouter extends Component {
                     </Route>
 
                     <Route path="/datafill">
-                        <JobDataFill/>
+                        <JobDataFill userID={this.state.userID}/>
                     </Route>
 
                     <Route path="/dashboard">

@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
     let replace = req.query.replace;
     let randomData = req.query.randomData;
 
-    let replaceID = req.query.replaceID;
+    let replaceID = ObjectID(req.query.replaceID);
     let userID = req.query.userID;
     let _id = req.query._id;
     let jobStatus = req.query.jobStatus;
@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
         _id: _id,
         userID : userID ? ObjectID(userID) : null,
         jobStatus: parseInt(jobStatus),
-        chosenUserID: chosenUserID,
+        chosenUserID: chosenUserID ? chosenUserID : null,
         title: title,
         description: description,
         price: parseInt(price),
@@ -80,8 +80,10 @@ router.get('/', function(req, res, next) {
 
             dbo.collection("jobs").insertOne(obj
             , (err, resuly) => {
-                if (err) throw err;
-                res.send("Data added successfully")
+                if (err) {res.send(err);}
+                else {
+                    res.send("Data added successfully")
+                }
                 db.close();
             })
         });
@@ -108,6 +110,8 @@ router.get('/', function(req, res, next) {
             return;
         }
 
+        console.log(obj);
+
         Object.keys(obj).forEach(function(key,index) {
             if((obj[key] == null || obj[key] == NaN) && key != "_id"){
                 res.send("Missing parameter " + key)
@@ -119,12 +123,13 @@ router.get('/', function(req, res, next) {
             if (err) throw err;
             var dbo = db.db("userData");
 
-            dbo.collection("jobs").findOneAndReplace({replaceID: replaceID}, obj).toArray(function(err, result) {
-                if (err) throw err;
-                file = JSON.parse(JSON.stringify(result))
-                res.send(file)
-                db.close();
-            });
+            dbo.collection("jobs").findOneAndReplace({_id: replaceID}, createDynamicObj(obj)).then(replacedDocument => {
+                if(replacedDocument) {
+                    res.send(`Successfully replaced the following document: ${replacedDocument}.`)
+                } else {
+                    res.send("No document matches the provided query.")
+                }
+              }).catch(err => console.error(`Failed to find and replace document: ${err}`))
         });
     }
 
