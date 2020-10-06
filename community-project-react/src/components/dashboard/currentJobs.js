@@ -6,26 +6,10 @@ class currentJobs extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            jobs: []
-        };
     }
-
-    /*
-    componentDidMount(){
-        fetch('http://localhost:3200/jobs?fetch=true&userID=5f728f406d252648c48c3063')
-            .then( resp => resp.json())
-            .then((data)=> {
-                    this.setState({
-                        jobs: data
-                    })
-            })
-    
-    }
-    */
 
     render() {
-        let jobList = this.state.jobs.map(job => {    
+        let jobList = this.props.jobs.map(job => {    
             return (
                 <Link className="job" to={{pathname: "/myjob", state: {job: job}}}>
                     <div class="card border-dark mb-3 dash-card">

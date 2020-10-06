@@ -12,6 +12,7 @@ import ChangeAddress from "./userProfile/changeAddress";
 import HomePage from "./homePage/homePage"
 import Dashboard from "./dashboard/dashboard"
 import JobPage from "./jobPage/jobPage"
+import MyJobPage from "./myJobPage/myJobPage"
 import JobDataFill from "./dataFill/dataFillPage"
 
 class dataRouter extends Component {
@@ -20,7 +21,7 @@ class dataRouter extends Component {
         super(props);
         this.state = {
           location: null,
-          userID: '5f7ba39ca1e5d43538018163',
+          userID: '5f728f406d252648c48c3063',
           jobs: []
         };
     }
@@ -68,6 +69,8 @@ class dataRouter extends Component {
                     </Route>
 
                     <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
+
+                    <Route exact path = "/myjob" render={(props) => <MyJobPage {...props} /> }/>
 
                     <Route path="/">
                         <HomePage jobs={this.state.jobs} userID={this.state.userID}/>

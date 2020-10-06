@@ -12,12 +12,21 @@ import Info from './info';
 class dashboard extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-          location: null
-        };
       }
 
     render() {
+        var uID = this.props.userID
+
+        var myJobs = this.props.jobs
+        //myJobs = this.props.jobs.filter(function (job) {
+        //    return job.chosenUserID === uID;
+        //});
+
+        var activeJobs = this.props.jobs
+        activeJobs = this.props.jobs.filter(function (job) {
+            return job.userID === uID;
+        });
+
         return (
             <div>
                 <div class="container">
@@ -28,8 +37,8 @@ class dashboard extends Component {
                         <div class="col-lg">
                             <Info />
                             <Link to="/datafill">Fill Data</Link>
-                            <CurrentJobs jobs={this.props.jobs} userID={this.props.userID}/>
-                            <ActiveListings jobs={this.props.jobs} userID={this.props.userID}/>
+                            <CurrentJobs jobs={myJobs}/>
+                            <ActiveListings jobs={activeJobs}/>
                             <History />
                         </div>
                         <div class="col-">
