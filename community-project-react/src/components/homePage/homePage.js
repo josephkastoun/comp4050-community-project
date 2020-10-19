@@ -29,9 +29,7 @@ class HomePage extends Component {
         return job.location === locat;
       });
     }
-
-    
-
+ 
     let jobList = locations.map(job => {
       return (
         <Link className="job" to={{pathname: "/job", state: {job: job}}}>
@@ -66,14 +64,9 @@ class HomePage extends Component {
           <Dropdown.Item eventKey="Chatswood">Chatswood</Dropdown.Item>
         </DropdownButton>
       <div className="homeContainer">
-        
-
-
-
         <div className="row">
             {jobList}
         </div>
-
       </div>
       </div>
 

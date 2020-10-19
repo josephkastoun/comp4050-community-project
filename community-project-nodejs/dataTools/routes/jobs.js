@@ -13,8 +13,9 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 jobStatus states:
 
 0 - Seeking a person to complete a job
-1 - Found a user to complete a job
-2 - Job is completed
+1 - Request Pending
+2 - Found a user to complete a job
+3 - Job is completed
 */
 
 function createDynamicObj(obj){
@@ -32,7 +33,6 @@ function createDynamicObj(obj){
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-
   
     let add = req.query.add;
     let fetch = req.query.fetch;
