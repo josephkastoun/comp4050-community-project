@@ -13,6 +13,22 @@ class Job extends Component {
 
     }
   }
+
+  getUserID(userID){
+        // fetch('http://localhost:3200/jobs?fetch=true&userid=')
+        //     .then( resp => resp.json())
+        //     .then((data)=> {
+        //         data.forEach((value, index) => {
+        //             if(this.state._id == value._id){
+        //                 this.setState({
+        //                     coins: value.balance,
+        //                     username: value.name,
+        //                     imageURL: value.picture
+        //                 })
+        //             }
+        //         })
+        // })
+  }
   
   render() {
       const job = this.props.location.state.job
@@ -52,11 +68,12 @@ class Job extends Component {
 
 
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <Link to="/">
+                    
+                    {job.jobStatus == 0 && <Link to="/">
                         <button className="btn btn-primary btn-lg active">
                             Apply for Job
                         </button>
-                    </Link>
+                    </Link>}
 
 
                     <Link to="/">
