@@ -68,7 +68,7 @@ class dataRouter extends Component {
                         <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>
                     </Route>
 
-                    <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
+                    <Route exact path = "/job" render={(props) => <JobPage {...props} userID={this.state.userID}/> }/>
 
                     <Route exact path = "/myjob" render={(props) => <MyJobPage {...props} /> }/>
 
