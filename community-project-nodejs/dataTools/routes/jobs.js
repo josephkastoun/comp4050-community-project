@@ -55,7 +55,7 @@ router.get('/', function(req, res, next) {
     // example http://localhost:3200/jobs?add=true&userID=userid233&jobID=jobid23434&jobStatus=0&title=example%20job&description=descExample&price=10&location=North%20Parramatta
 
     var obj = {
-        _id: _id,
+        _id: _id ? ObjectID(_id) : null,
         userID : userID ? ObjectID(userID) : null,
         jobStatus: parseInt(jobStatus),
         chosenUserID: chosenUserID ? chosenUserID : null,
@@ -146,7 +146,8 @@ router.get('/', function(req, res, next) {
 
                 var obj = {
                     userID : _id2,
-                    jobStatus: Math.floor(Math.random() * 3),
+                    jobStatus: 0,
+                    chosenUserID : "",
                     title: generateName(),
                     description: "descccc",
                     price: Math.floor(Math.random() * 101),

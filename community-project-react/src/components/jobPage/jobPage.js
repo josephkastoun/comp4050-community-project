@@ -1,6 +1,8 @@
-
 import React, { Component , useState} from '../../../node_modules/react';
-import './jobPage.css';import {
+import './jobPage.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import {
     Link
   } from "react-router-dom";
 
@@ -52,87 +54,79 @@ updateVariables(){
     job.chosenUserID = this.state.userID;
 }
   
-  render() {
-      //this.state.job = this.props.location.state.job
-      const job = this.state.job
-
-      if(job.jobStatus == 0) {
-        return (
-            <div className="jobContainer">
-                <div className="descriptionContainer">
-    
-                    <img className="jobImage" src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
-                    <div>
-                        <h3 className="jobTitle">
-                            {job.title}
-                        </h3>
-                        <h6>
-                            Location: {job.location}
-                        </h6>
-                        <p>
-                            {job.description}
-                        </p>
-                    </div>
-                </div>
-    
-                <Link onClick={e => {this.submitData(e)}}>
-                   <div class="wrap">
-                        <button className="applyButton" >
-                          Apply for Job
-                        </button>
-                    </div>
-                </Link>
-                
-                <div className="sellerDetails">
-                    <p className="sellerName">{job.userID}</p>  <p><span className="sellerRating">4.5/5</span></p>
-                </div>
-    
-                <Link to="/">
-                   <div class="wrap">
-                        <button className="backButton" >
-                          Go Back
-                        </button>
-                    </div>
-                </Link>
-            </div>
-        )
-      }
-
-      else {
-        return (
-            <div className="jobContainer">
-                <div className="descriptionContainer">
-    
-                    <img className="jobImage" src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
-                    <div>
-                        <h3 className="jobTitle">
-                            {job.title}
-                        </h3>
-                        <h6>
-                            Location: {job.location}
-                        </h6>
-                        <p>
-                            {job.description}
-                        </p>
-                    </div>
-                </div>
-                
-                <div className="sellerDetails">
-                    <p className="sellerName">{job.userID}</p>  <p><span className="sellerRating">4.5/5</span></p>
-                </div>
-    
-                <Link to="/">
-                   <div class="wrap">
-                        <button className="backButton" >
-                          Go Back
-                        </button>
-                    </div>
-                </Link>
-            </div>
-        )
-      }
-
+getUserID(userID){
+        // fetch('http://localhost:3200/jobs?fetch=true&userid=')
+        //     .then( resp => resp.json())
+        //     .then((data)=> {
+        //         data.forEach((value, index) => {
+        //             if(this.state._id == value._id){
+        //                 this.setState({
+        //                     coins: value.balance,
+        //                     username: value.name,
+        //                     imageURL: value.picture
+        //                 })
+        //             }
+        //         })
+        // })
 }
+  
+  render() {
+      const job = this.props.location.state.job
+      const seller = job.seller
+      return (
+            <div className="container">
+                <div className="card">
+                    <div class="row no-gutters">
+                        <div className="col-md-4">
+                            <img className="jobImage card-img-top"
+                                src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
+                        </div>
+
+                        <div className="col-md-8">
+                            <div className="card-body">
+                                <div className="descriptionContainer">
+                                    <div>
+                                        <h3 className="card-title">
+                                            {job.title}
+                                        </h3>
+                                        <h6 className="card-subtitle mb-2 text-muted">
+                                            Location: {job.location}
+                                        </h6>
+                                        <p className="card-text">
+                                            {job.description}
+                                        </p>
+                                        <div className="sellerDetails">
+                                            <p className="sellerName text-muted">{job.userID}</p>
+                                            <p><span className="sellerRating text-muted">4.5/5</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    
+                    {job.jobStatus == 0 && <Link to="/">
+                        <button className="btn btn-primary btn-lg active">
+                            Apply for Job
+                        </button>
+                    </Link>}
+
+
+                    <Link to="/">
+                        <button className="btn btn-danger btn-lg active">
+                            Go Back
+                        </button>
+                    </Link>
+                </div>
+                </div>
+
+                
+        </div>  
+    )}
 }
 
 export default Job;
