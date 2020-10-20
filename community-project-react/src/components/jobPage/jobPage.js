@@ -37,7 +37,7 @@ submitData(event) {
 
     fetch(url.href).then(() =>
     {
-        fetch('http://localhost:3200/jobs?fetch=true&userID=' + this.props.userID)
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
         .then( resp => resp.json())
         .then((data)=> {
                 this.setState({
@@ -108,19 +108,19 @@ getUserID(userID){
 
 
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    
-                    {job.jobStatus == 0 && <Link to="/">
-                        <button className="btn btn-primary btn-lg active">
-                            Apply for Job
-                        </button>
-                    </Link>}
-
 
                     <Link to="/">
                         <button className="btn btn-danger btn-lg active">
                             Go Back
                         </button>
                     </Link>
+                    
+                    {job.jobStatus == 0 && <Link onClick={e => {this.submitData(e)}}>
+                        <button className="btn btn-primary btn-lg active">
+                            Apply for Job
+                        </button>
+                    </Link>}
+
                 </div>
                 </div>
 

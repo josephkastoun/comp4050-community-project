@@ -19,13 +19,18 @@ class dashboard extends Component {
         var uID = this.props.userID
 
         var myJobs = this.props.jobs
-        //myJobs = this.props.jobs.filter(function (job) {
-        //    return job.chosenUserID === uID;
-        //});
+        myJobs = this.props.jobs.filter(function (job) {
+           return job.chosenUserID === uID;
+        });
 
         var activeJobs = this.props.jobs
         activeJobs = this.props.jobs.filter(function (job) {
             return job.userID === uID;
+        });
+
+        var pastJobs = this.props.jobs
+        pastJobs = this.props.jobs.filter(function (job) {
+            return job.userID === uID && job.jobStatus == 3;
         });
 
         return (
@@ -38,9 +43,9 @@ class dashboard extends Component {
                         <div class="col-lg">
                             <Info />
                             <Link to={"dataFill"} >Fill Data</Link>
-                            <CurrentJobs jobs={this.props.jobs} userID={this.props.userID}/>
-                            <ActiveListings jobs={this.props.jobs} userID={this.props.userID}/>
-                            <History />
+                            <CurrentJobs jobs={myJobs} userID={this.props.userID}/>
+                            <ActiveListings jobs={activeJobs} userID={this.props.userID}/>
+                            <History jobs={pastJobs} userID={this.props.userID}/>
                         </div>
                         <div class="col-">
                             
