@@ -60,9 +60,11 @@ class dataRouter extends Component {
                         <ChangeAddress/>
                     </Route>
 
-                    <Route path="/datafill">
+                    <Route path="/add">
                         <JobDataFill userID={this.state.userID}/>
                     </Route>
+
+                    <Route exact path = "/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
 
                     <Route path="/dashboard">
                         <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>

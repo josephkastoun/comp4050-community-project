@@ -112,12 +112,19 @@ componentDidMount() {
                             Go Back
                         </button>
                     </Link>
+
+                    {job.userID == this.state.userID && <Link to="/edit">
+                        <button className="btn btn-primary btn-lg active">
+                            Edit
+                        </button>
+                    </Link>}
                     
                     {job.jobStatus == 0 && <Link onClick={e => {this.submitData(e)}}>
                         <button className="btn btn-primary btn-lg active">
                             Apply for Job
                         </button>
                     </Link>}
+
 
                 </div>
                 </div>
