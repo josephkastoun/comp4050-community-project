@@ -10,25 +10,18 @@ class Job extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+        name : ""
     }
   }
 
-  getUserID(userID){
-        // fetch('http://localhost:3200/jobs?fetch=true&userid=')
-        //     .then( resp => resp.json())
-        //     .then((data)=> {
-        //         data.forEach((value, index) => {
-        //             if(this.state._id == value._id){
-        //                 this.setState({
-        //                     coins: value.balance,
-        //                     username: value.name,
-        //                     imageURL: value.picture
-        //                 })
-        //             }
-        //         })
-        // })
-  }
+  componentDidMount() {
+        fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
+            .then( resp => resp.json())
+            .then((data)=> {
+                this.setState({name : data[0].name})
+        })
+    }
+  
   
   render() {
       const job = this.props.location.state.job
@@ -52,12 +45,23 @@ class Job extends Component {
                                         <h6 className="card-subtitle mb-2 text-muted">
                                             Location: {job.location}
                                         </h6>
+                                        <h6 className="card-subtitle mb-2 text-muted">
+                                            Value: {job.price}
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" className="userCoinsIcon" fill="#17a2b8" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"/>
+                                            </svg>
+                                        </h6>
                                         <p className="card-text">
                                             {job.description}
                                         </p>
                                         <div className="sellerDetails">
-                                            <p className="sellerName text-muted">{job.userID}</p>
-                                            <p><span className="sellerRating text-muted">4.5/5</span></p>
+                                            <h6 className="sellerName text-muted">{"Listing by: "+ this.state.name}</h6>
+                                            <div className="ratingContainer">
+                                                <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <h6 className="sellerRating text-muted"> 4.5/5</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
