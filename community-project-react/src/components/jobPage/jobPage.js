@@ -48,13 +48,13 @@ submitData(event) {
 )
 }
   
-componentDidMount() {
-    fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
-        .then( resp => resp.json())
-        .then((data)=> {
-            this.setState({name : data[0].name})
-    })
-}
+    componentDidMount() {
+        fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
+            .then( resp => resp.json())
+            .then((data)=> {
+                this.setState({name : data[0].name})
+        })
+    }
   
   
   render() {
@@ -111,6 +111,10 @@ componentDidMount() {
                         <button className="btn btn-danger btn-lg active">
                             Go Back
                         </button>
+                    </Link>
+
+                    <Link>
+                        
                     </Link>
                     
                     {job.jobStatus == 0 && <Link onClick={e => {this.submitData(e)}}>
