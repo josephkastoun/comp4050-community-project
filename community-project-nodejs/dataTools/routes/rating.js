@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
     
     let add = req.query.add;
     let fetch = req.query.fetch;
+    let total = req.query.total;
 
     let userID = req.query.userID; // User ID of the person adding
     let chosenUserID = req.query.chosenUserID; // User ID of the person selected to get the rating
@@ -80,6 +81,28 @@ router.get('/', function(req, res, next) {
             });
         })
     } 
+    else if(total){
+        obj = {    
+            chosenUserID : chosenUserID ? ObjectID(chosenUserID) : null
+        }
+
+        MongoClient.connect(uri, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("userData");
+
+
+            dbo.collection("ratings").find(createDynamicObj(obj)).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                let total = 0;
+                result.forEach(element => {
+                    total += parseInt(element.rating);
+                });
+                res.send(total + "")
+                db.close();
+              });
+        });
+    }
     else if(fetch){
         obj = {    
             userID : userID ? ObjectID(userID) : null, 
