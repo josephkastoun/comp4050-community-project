@@ -55,7 +55,7 @@ class search extends Component {
         const queryResults = searchQuery === "" ? allJobs : searchResults
         return (
             <div>
-               <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <div style={{ margin: "0 auto" }}>
                         <label htmlFor="Search" style={{ paddingRight: "10px" }}>
                             Enter your search here
@@ -68,7 +68,36 @@ class search extends Component {
                             style={{ margin: "0 auto", width: "400px" }}
                         />
                     </div>
-                </form> 
+                </form>
+                {/*
+
+                #card
+                let jobList = this.props.jobs.map(job => {    
+                    return (
+                        <Link className="job" to={{pathname: "/myjob", state: {job: job}}}>
+                            <div class="card border-dark mb-3 dash-card">
+                                <div class="card-body text-dark dash-card-body">
+                                    <h5 class="card-title">{job.title}</h5>
+                                    <p class="card-text">{job.description}</p>
+                                </div>
+                                <div class="card-footer bg-transparent border-dark">
+                                    <p className="jobLocation">Location: {job.location}</p>
+                                    <p className="jobPrice">Cost: {job.price}</p>
+                                </div>
+                            </div> 
+                        </Link>
+                    );
+                })
+                return (
+                    <div className="container">
+                        <h3 className="text-left py-3">Your Current Jobs</h3>
+                        <div className="row">
+                            {jobList}
+                        </div>
+                    </div>
+                ) 
+
+                #from example
                 <div>
                     Number of items:
                     {queryResults.length}
@@ -105,6 +134,7 @@ class search extends Component {
                         </tbody>
                     </table>
                 </div>
+                */}
             </div>
         );
     }
