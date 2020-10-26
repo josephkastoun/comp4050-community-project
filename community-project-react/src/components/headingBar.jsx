@@ -7,6 +7,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import Search from "./search"
 
 class headingBar extends Component {
 
@@ -69,7 +70,7 @@ class headingBar extends Component {
                         
                     </ul>
                 </div>
-
+            
                 <form className="form-inline">
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button className="btn btn-light my-2 my-sm-0 border border-dark" type="submit">Search</button>
