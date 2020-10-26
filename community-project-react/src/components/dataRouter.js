@@ -47,7 +47,7 @@ class dataRouter extends Component {
     render() {
         return (
             <Router>
-            <Header/>
+            <Header userID={this.state.userID}/>
             <div className="app"> 
                 <Switch>
                     <Route path="/profile">

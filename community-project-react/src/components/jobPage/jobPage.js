@@ -12,7 +12,6 @@ class Job extends Component {
     this.state = {
         userID: this.props.userID,
         job: this.props.location.state.job
-        
     }
   }
 
