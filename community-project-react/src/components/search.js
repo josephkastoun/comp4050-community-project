@@ -51,8 +51,8 @@ class search extends Component {
  
 
     render() {
-        const { allJobs, searchResults, searchQuery } = this.state
-        const queryResults = searchQuery === "" ? allJobs : searchResults
+        // const { allJobs, searchResults, searchQuery } = this.state
+        // const queryResults = searchQuery === "" ? allJobs : searchResults
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -62,7 +62,7 @@ class search extends Component {
                         </label>
                         <input
                             id="Search"
-                            value={searchQuery}
+                            // value={searchQuery}
                             onChange={this.searchData}
                             placeholder="Enter your search here"
                             style={{ margin: "0 auto", width: "400px" }}
