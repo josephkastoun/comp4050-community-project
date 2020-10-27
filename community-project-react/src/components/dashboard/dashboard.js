@@ -25,12 +25,12 @@ class dashboard extends Component {
 
         var activeJobs = this.props.jobs
         activeJobs = this.props.jobs.filter(function (job) {
-            return job.userID === uID;
+            return job.userID === uID && job.jobStatus != 4;
         });
 
         var pastJobs = this.props.jobs
         pastJobs = this.props.jobs.filter(function (job) {
-            return job.userID === uID && job.jobStatus == 3;
+            return job.userID === uID && job.jobStatus == 4;
         });
 
         return (

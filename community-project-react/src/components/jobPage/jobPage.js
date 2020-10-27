@@ -109,11 +109,49 @@ declineChosenUser(event) {
     }
 )
 }
+
+markAsCompleted(event) {
+    event.preventDefault();
+    //this.updateVariables();
+
+    var job = this.state.job
+    job.jobStatus = 4;
+
+    let url = new URL("http://localhost:3200/jobs?replace=true")
+
+    url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("userID", job.userID)
+    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("chosenUserID", job.chosenUserID)
+    url.searchParams.set("title", job.title)
+    url.searchParams.set("description", job.desc)
+    url.searchParams.set("price", job.price)
+    url.searchParams.set("location", job.location)
+
+    fetch(url.href).then(() =>
+    {
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+                this.setState({
+                    job: data
+                })
+        })
+    }
+)
+}
+
     componentDidMount() {
         fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
             .then( resp => resp.json())
             .then((data)=> {
                 this.setState({name : data[0].name})
+        })
+
+        fetch('http://localhost:3200/rating?total=true&chosenUserID=' + this.props.location.state.job.userID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({rating : data})
         })
 
         fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.chosenUserID)
@@ -165,13 +203,19 @@ declineChosenUser(event) {
                                         <p className="card-text">
                                             {job.description}
                                         </p>
+                                        <p className="card-text">
+                                            Job Status: {job.jobStatus == 1 && "Listed Job"}
+                                            {job.jobStatus == 2 && "Applied"}
+                                            {job.jobStatus == 3 && "Active"}
+                                            {job.jobStatus == 4 && "Completed"}
+                                        </p>
                                         <div className="sellerDetails">
                                             <h6 className="sellerName text-muted">{"Listing by: "+ this.state.name}</h6>
                                             <div className="ratingContainer">
                                                 <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                                 </svg>
-                                                <h6 className="sellerRating text-muted"> 4.5/5</h6>
+                                                <h6 className="sellerRating text-muted"> {this.state.rating}/5</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +234,7 @@ declineChosenUser(event) {
                         </button>
                     </Link>
 
-                    {job.userID == this.state.userID && <Link to="/edit">
+                    {job.userID == this.state.userID && job.jobStatus != 3 && job.jobStatus != 4 && <Link to="/edit">
                         <button className="btn btn-primary btn-lg active">
                             Edit
                         </button>
@@ -201,10 +245,18 @@ declineChosenUser(event) {
                             Apply for Job
                         </button>
                     </Link>}
+
+                    {job.jobStatus == 3 && job.userID == this.state.userID && <Link onClick={e => {this.markAsCompleted(e)}}>
+                        <button className="btn btn-success btn-lg active">
+                            Completed
+                        </button>
+                    </Link>}
+
                 </div>
                 
                 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
 
                 {job.jobStatus == 2 && job.userID == this.state.userID && this.state.chosenName != null &&
                 <div class="card border-dark mb-3 dash-card">
