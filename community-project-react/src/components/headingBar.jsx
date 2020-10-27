@@ -28,7 +28,7 @@ class headingBar extends Component {
             .then( resp => resp.json())
             .then((data)=> {
                 data.forEach((value, index) => {
-                    if(this.state._id == value._id){
+                    if(this.props.userID == value._id){
                         this.setState({
                             coins: value.balance,
                             username: value.name,
