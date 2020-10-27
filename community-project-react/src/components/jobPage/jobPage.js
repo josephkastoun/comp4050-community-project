@@ -16,12 +16,12 @@ class Job extends Component {
     }
   }
 
-submitData(event) {
+applyForJob(event) {
     event.preventDefault();
     //this.updateVariables();
 
     var job = this.state.job
-    job.jobStatus = 1;
+    job.jobStatus = 2;
     job.chosenUserID = this.state.userID;
 
     let url = new URL("http://localhost:3200/jobs?replace=true")
@@ -47,14 +47,92 @@ submitData(event) {
     }
 )
 }
-  
+
+acceptChosenUser(event) {
+    event.preventDefault();
+    //this.updateVariables();
+
+    var job = this.state.job
+    job.jobStatus = 3;
+
+    let url = new URL("http://localhost:3200/jobs?replace=true")
+
+    url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("userID", job.userID)
+    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("chosenUserID", job.chosenUserID)
+    url.searchParams.set("title", job.title)
+    url.searchParams.set("description", job.desc)
+    url.searchParams.set("price", job.price)
+    url.searchParams.set("location", job.location)
+
+    fetch(url.href).then(() =>
+    {
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+                this.setState({
+                    job: data
+                })
+        })
+    }
+)
+}
+
+declineChosenUser(event) {
+    event.preventDefault();
+    //this.updateVariables();
+
+    var job = this.state.job
+    job.jobStatus = 1;
+    job.chosenUserID = " ";
+
+    let url = new URL("http://localhost:3200/jobs?replace=true")
+
+    url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("userID", job.userID)
+    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("chosenUserID", job.chosenUserID)
+    url.searchParams.set("title", job.title)
+    url.searchParams.set("description", job.desc)
+    url.searchParams.set("price", job.price)
+    url.searchParams.set("location", job.location)
+
+    fetch(url.href).then(() =>
+    {
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+                this.setState({
+                    job: data
+                })
+        })
+    }
+)
+}
     componentDidMount() {
         fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
             .then( resp => resp.json())
             .then((data)=> {
                 this.setState({name : data[0].name})
         })
+
+        fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.chosenUserID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({chosenName : data[0].name,
+            chosenEmail: data[0].email,
+            chosenPicture: data[0].picture})
+        })
+
+        fetch('http://localhost:3200/rating?total=true&chosenUserID=' + this.props.location.state.job.chosenUserID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({chosenRating : data})
+        })
     }
+
+
   
   
   render() {
@@ -119,13 +197,41 @@ submitData(event) {
                         </button>
                     </Link>}
                     
-                    {job.jobStatus == 0 && <Link onClick={e => {this.submitData(e)}}>
+                    {job.jobStatus == 1 && job.userID != this.state.userID && <Link onClick={e => {this.applyForJob(e)}}>
                         <button className="btn btn-primary btn-lg active">
                             Apply for Job
                         </button>
                     </Link>}
+                </div>
+                
+                
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
+                {job.jobStatus == 2 && job.userID == this.state.userID && this.state.chosenName != null &&
+                <div class="card border-dark mb-3 dash-card">
+                        <div class="card-body text-dark dash-card-body">
+                            <h5 class="card-title">{this.state.chosenName} Has Applied for this Job</h5>
+                            <p class="card-text">Email: {this.state.chosenEmail}</p>
+                            <p class="card-text">Rating: {this.state.chosenRating}</p>
+                            <img className="chosenImage card-img-top" src={this.state.chosenPicture} />
+                        </div>
+                        <div class="card-footer bg-transparent border-dark">
 
+                        <Link onClick={e => {this.acceptChosenUser(e)}}>
+                            <button className="btn btn-success btn-lg active">
+                                Accept
+                            </button>
+                        </Link>
+
+                        <Link onClick={e => {this.declineChosenUser(e)}}>
+                            <button className="btn btn-danger btn-lg active">
+                                Decline
+                            </button>
+                        </Link>
+                            
+                        </div>
+                    </div>
+                }
                 </div>
                 </div>
 
