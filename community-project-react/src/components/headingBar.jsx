@@ -71,12 +71,6 @@ class headingBar extends Component {
                     </ul>
                 </div>
             
-                {/* <form className="form-inline">
-
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-light my-2 my-sm-0 border border-dark" type="submit">Search</button>
-                </form> */}
-                <Search />
 
                 <div className="coinContainer border rounded">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="userCoinsIcon" fill="#17a2b8" xmlns="http://www.w3.org/2000/svg">

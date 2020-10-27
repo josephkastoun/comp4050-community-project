@@ -11,26 +11,52 @@ import Dropdown from 'react-bootstrap/Dropdown'
 class HomePage extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      location: null
+      searchResults : this.props.jobs
     };
+
   }
 
   handleSelect (e) {
     this.setState({location : e})
   }
+
+  searchData = e => {
+    const queryResult = e.target.value;
+
+    if(e === ""){
+        this.state = {
+          searchResults : this.props.jobs
+        };
+        return;
+    }
+
+    let data = []
+
+    this.props.jobs.forEach(e => {
+        if(e.description.toLowerCase().search(queryResult.toLowerCase()) != -1 
+        || e.title.toLowerCase().search(queryResult.toLowerCase()) != -1
+        || e.location.toLowerCase().search(queryResult.toLowerCase()) != -1){
+            data.push(e);
+        }
+    });
+
+    this.setState({ searchQuery: e.target.value, searchResults: data })
+  }
+  
+  handleSubmit = e => {
+    e.preventDefault()
+  }
   
   render() {
-    var locations = this.props.jobs
-    var locat = this.state.location
-
-    if(locat != null) {
-      locations = this.props.jobs.filter(function (job) {
-        return job.location === locat;
-      });
+    if(this.state.searchResults.length == 0){
+      this.state = {
+        searchResults : this.props.jobs
+      };
     }
  
-    let jobList = locations.map(job => {
+    let jobList = this.state.searchResults.map(job => {
       return (
         <Link className="job" to={{pathname: "/job", state: {job: job, prevLocation : "/"}}}>
         <div className="homeCard border-dark mb-3">
@@ -49,20 +75,13 @@ class HomePage extends Component {
     
     return (
       <div className= "homePage">
-        <DropdownButton
-          alignRight
-          title="Location"
-          id="dropdown-menu-align-right"
-          variant="secondary"
-          onSelect={val => this.handleSelect(val)}
-        >
-          <Dropdown.Item eventKey="">All</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item eventKey="Macquarie Park">Macquarie Park</Dropdown.Item>
-          <Dropdown.Item eventKey="Epping">Epping</Dropdown.Item>
-          <Dropdown.Item eventKey="Lane Cove">Lane Cove</Dropdown.Item>
-          <Dropdown.Item eventKey="Chatswood">Chatswood</Dropdown.Item>
-        </DropdownButton>
+        
+        <form className="form-inline">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            id="Search"
+            onChange={this.searchData}
+          />
+        </form>
       <div className="homeContainer">
         <div className="row">
             {jobList}
