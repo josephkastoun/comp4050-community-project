@@ -32,7 +32,7 @@ class HomePage extends Component {
  
     let jobList = locations.map(job => {
       return (
-        <Link className="job" to={{pathname: "/job", state: {job: job}}}>
+        <Link className="job" to={{pathname: "/job", state: {job: job, prevLocation : "/"}}}>
         <div className="homeCard border-dark mb-3">
           <div className="homeCardBody text-dark">
               <h5 className="card-title">{job.title}</h5>

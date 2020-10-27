@@ -106,7 +106,7 @@ submitData(event) {
 
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
-                    <Link to="/">
+                    <Link to={this.props.location.state.prevLocation}>
                         <button className="btn btn-danger btn-lg active">
                             Go Back
                         </button>

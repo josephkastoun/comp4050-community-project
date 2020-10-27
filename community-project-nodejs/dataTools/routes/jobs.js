@@ -12,10 +12,10 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 /*
 jobStatus states:
 
-0 - Seeking a person to complete a job
-1 - Request Pending
-2 - Found a user to complete a job
-3 - Job is completed
+1 - Seeking a person to complete a job
+2 - Request Pending
+3 - Found a user to complete a job
+4 - Job is completed
 */
 
 function createDynamicObj(obj){
