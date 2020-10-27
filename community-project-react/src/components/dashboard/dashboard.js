@@ -42,7 +42,6 @@ class dashboard extends Component {
                         </div>
                         <div class="col-lg">
                             <Info />
-                            <Link to={"dataFill"} >Fill Data</Link>
                             <CurrentJobs jobs={myJobs} userID={this.props.userID}/>
                             <ActiveListings jobs={activeJobs} userID={this.props.userID}/>
                             <History jobs={pastJobs} userID={this.props.userID}/>
