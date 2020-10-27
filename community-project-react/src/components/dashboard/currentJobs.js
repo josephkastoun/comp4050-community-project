@@ -11,7 +11,7 @@ class currentJobs extends Component {
     render() {
         let jobList = this.props.jobs.map(job => {    
             return (
-                <Link className="job" to={{pathname: "/myjob", state: {job: job}}}>
+                <Link className="job" to={{pathname: "/myjob", state: {job: job, prevLocation : "/dashboard"}}}>
                     <div class="card border-dark mb-3 dash-card">
                         <div class="card-body text-dark dash-card-body">
                             <h5 class="card-title">{job.title}</h5>

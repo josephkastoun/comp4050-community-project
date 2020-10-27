@@ -1,49 +1,27 @@
 
 .jobImage {
-width: 300px;
-height: 300px;
-margin-right: 10px;
+    width: 300px;
+    height: 300px;
+    margin-right: 10px;
 }
 
-.jobTitle {
-color: black;
+.btn-toolbar {
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px
 }
-.descriptionContainer {
+
+
+.ratingContainer{
     display: flex;
-    flex-direction: row;
-}
-.jobContainer {
-    margin-top: 15px;
-    margin-left:15%;
-    margin-right:15%;
-    border-style: solid;
-    border-color:#333333;
-    border-radius: 10px;
-    background: lightgrey;
-    padding-top:1%;
-    padding-left:1%;
-  }
-
-  .sellerName {
-    font-size: 20;
-    color: black;
-  }
-.sellerDetails {
-    margin-top: 20px;
+    justify-content: left;
 }
 
-.sellerRating {
-    color: black;
+.sellerRating{
+    display: inline;
+    margin-left: 5px
 }
 
-.backButton {
-    color: rebeccapurple;
-    border-radius: 25px;
-    margin-bottom: 2%;
-}
-
-.applyButton {
-    color: rebeccapurple;
-    border-radius: 25px;
-    float: right;
+.container {
+    margin-top : 30px;
 }
