@@ -5,9 +5,6 @@ import './homePage.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown'
-
 class HomePage extends Component {
   constructor(props) {
     super(props);

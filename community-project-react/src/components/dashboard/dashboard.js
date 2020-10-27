@@ -41,7 +41,7 @@ class dashboard extends Component {
                             
                         </div>
                         <div class="col-lg">
-                            <Info />
+                            <Info uID = {this.props.userID}/>
                             <CurrentJobs jobs={myJobs} userID={this.props.userID}/>
                             <ActiveListings jobs={activeJobs} userID={this.props.userID}/>
                             <History jobs={pastJobs} userID={this.props.userID}/>

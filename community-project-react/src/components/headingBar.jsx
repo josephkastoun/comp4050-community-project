@@ -7,7 +7,6 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import Search from "./search"
 
 class headingBar extends Component {
 

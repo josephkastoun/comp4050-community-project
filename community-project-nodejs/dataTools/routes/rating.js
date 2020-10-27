@@ -92,14 +92,21 @@ router.get('/', function(req, res, next) {
 
 
             dbo.collection("ratings").find(createDynamicObj(obj)).toArray(function(err, result) {
-                if (err) throw err;
+                if (err) {
+                    res.json({total : 0})
+                    db.close();
+                    return;
+                }
+
+                
                 console.log(result);
                 let total = 0;
                 result.forEach(element => {
                     total += parseInt(element.rating);
                 });
-                res.send(total + "")
+                res.json({total : total})
                 db.close();
+                return;
               });
         });
     }
