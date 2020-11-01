@@ -1,6 +1,8 @@
-
 import React, { Component , useState} from '../../../node_modules/react';
-import './jobPage.css';import {
+import './jobPage.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import {
     Link
   } from "react-router-dom";
 
@@ -8,51 +10,284 @@ class Job extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+        userID: this.props.userID,
+        job: this.props.location.state.job
     }
   }
+
+applyForJob(event) {
+    event.preventDefault();
+    //this.updateVariables();
+
+    var job = this.state.job
+    job.jobStatus = 2;
+    job.chosenUserID = this.state.userID;
+
+    let url = new URL("http://localhost:3200/jobs?replace=true")
+
+    url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("userID", job.userID)
+    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("chosenUserID", job.chosenUserID)
+    url.searchParams.set("title", job.title)
+    url.searchParams.set("description", job.desc)
+    url.searchParams.set("price", job.price)
+    url.searchParams.set("location", job.location)
+
+    fetch(url.href).then(() =>
+    {
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+                this.setState({
+                    job: data
+                })
+        })
+    }
+)
+}
+
+acceptChosenUser(event) {
+    event.preventDefault();
+    //this.updateVariables();
+
+    var job = this.state.job
+    job.jobStatus = 3;
+
+    let url = new URL("http://localhost:3200/jobs?replace=true")
+
+    url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("userID", job.userID)
+    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("chosenUserID", job.chosenUserID)
+    url.searchParams.set("title", job.title)
+    url.searchParams.set("description", job.desc)
+    url.searchParams.set("price", job.price)
+    url.searchParams.set("location", job.location)
+
+    fetch(url.href).then(() =>
+    {
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+                this.setState({
+                    job: data
+                })
+        })
+    }
+)
+}
+
+declineChosenUser(event) {
+    event.preventDefault();
+    //this.updateVariables();
+
+    var job = this.state.job
+    job.jobStatus = 1;
+    job.chosenUserID = " ";
+
+    let url = new URL("http://localhost:3200/jobs?replace=true")
+
+    url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("userID", job.userID)
+    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("chosenUserID", job.chosenUserID)
+    url.searchParams.set("title", job.title)
+    url.searchParams.set("description", job.desc)
+    url.searchParams.set("price", job.price)
+    url.searchParams.set("location", job.location)
+
+    fetch(url.href).then(() =>
+    {
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+                this.setState({
+                    job: data
+                })
+        })
+    }
+)
+}
+
+markAsCompleted(event) {
+    event.preventDefault();
+    //this.updateVariables();
+
+    var job = this.state.job
+    job.jobStatus = 4;
+
+    let url = new URL("http://localhost:3200/jobs?replace=true")
+
+    url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("userID", job.userID)
+    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("chosenUserID", job.chosenUserID)
+    url.searchParams.set("title", job.title)
+    url.searchParams.set("description", job.desc)
+    url.searchParams.set("price", job.price)
+    url.searchParams.set("location", job.location)
+
+    fetch(url.href).then(() =>
+    {
+        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+                this.setState({
+                    job: data
+                })
+        })
+    }
+)
+}
+
+    componentDidMount() {
+        fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
+            .then( resp => resp.json())
+            .then((data)=> {
+                this.setState({name : data[0].name})
+        })
+
+        fetch('http://localhost:3200/rating?total=true&chosenUserID=' + this.props.location.state.job.userID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({rating : data.total})
+        })
+
+        fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.chosenUserID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({chosenName : data[0].name,
+            chosenEmail: data[0].email,
+            chosenPicture: data[0].picture})
+        })
+
+        fetch('http://localhost:3200/rating?total=true&chosenUserID=' + this.props.location.state.job.chosenUserID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({chosenRating : data.total})
+        })
+    }
+
+
+  
   
   render() {
       const job = this.props.location.state.job
       const seller = job.seller
       return (
-        <div className="jobContainer">
-            <div className="descriptionContainer">
+            <div className="container">
+                <div className="card">
+                    <div class="row no-gutters">
+                        <div className="col-md-4">
+                            <img className="jobImage card-img-top"
+                                src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
+                        </div>
 
-                <img className="jobImage" src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
-                <div>
-                    <h3 className="jobTitle">
-                        {job.title}
-                    </h3>
-                    <h6>
-                        Location: {job.location}
-                    </h6>
-                    <p>
-                        {job.description}
-                    </p>
-                </div>
-            </div>
+                        <div className="col-md-8">
+                            <div className="card-body">
+                                <div className="descriptionContainer">
+                                    <div>
+                                        <h3 className="card-title">
+                                            {job.title}
+                                        </h3>
+                                        <h6 className="card-subtitle mb-2 text-muted">
+                                            Location: {job.location}
+                                        </h6>
+                                        <h6 className="card-subtitle mb-2 text-muted">
+                                            Value: {job.price}
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" className="userCoinsIcon" fill="#17a2b8" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"/>
+                                            </svg>
+                                        </h6>
+                                        <p className="card-text">
+                                            {job.description}
+                                        </p>
+                                        <p className="card-text">
+                                            Job Status: {job.jobStatus == 1 && "Listed Job"}
+                                            {job.jobStatus == 2 && "Applied"}
+                                            {job.jobStatus == 3 && "Active"}
+                                            {job.jobStatus == 4 && "Completed"}
+                                        </p>
+                                        <div className="sellerDetails">
+                                            <h6 className="sellerName text-muted">{"Listing by: "+ this.state.name}</h6>
+                                            <div className="ratingContainer">
+                                                <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <h6 className="sellerRating text-muted"> {this.state.rating}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <Link to="/">
-               <div class="wrap">
-                    <button className="applyButton" >
-                      Apply for Job
-                    </button>
-                </div>
-            </Link>
-            
-            <div className="sellerDetails">
-                <p className="sellerName">{job.userID}</p>  <p><span className="sellerRating">4.5/5</span></p>
-            </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <Link to="/">
-               <div class="wrap">
-                    <button className="backButton" >
-                      Go Back
-                    </button>
+
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+                    <Link to={this.props.location.state.prevLocation}>
+                        <button className="btn btn-danger btn-lg active">
+                            Go Back
+                        </button>
+                    </Link>
+
+                    {job.userID == this.state.userID && job.jobStatus != 3 && job.jobStatus != 4 && <Link to="/edit">
+                        <button className="btn btn-primary btn-lg active">
+                            Edit
+                        </button>
+                    </Link>}
+                    
+                    {job.jobStatus == 1 && job.userID != this.state.userID && <Link onClick={e => {this.applyForJob(e)}}>
+                        <button className="btn btn-primary btn-lg active">
+                            Apply for Job
+                        </button>
+                    </Link>}
+
+                    {job.jobStatus == 3 && job.userID == this.state.userID && <Link onClick={e => {this.markAsCompleted(e)}}>
+                        <button className="btn btn-success btn-lg active">
+                            Completed
+                        </button>
+                    </Link>}
+
                 </div>
-            </Link>
-        </div>
+                
+                
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+
+                {job.jobStatus == 2 && job.userID == this.state.userID && this.state.chosenName != null &&
+                <div class="card border-dark mb-3 dash-card">
+                        <div class="card-body text-dark dash-card-body">
+                            <h5 class="card-title">{this.state.chosenName} Has Applied for this Job</h5>
+                            <p class="card-text">Email: {this.state.chosenEmail}</p>
+                            <p class="card-text">Rating: {this.state.chosenRating}</p>
+                            <img className="chosenImage card-img-top" src={this.state.chosenPicture} />
+                        </div>
+                        <div class="card-footer bg-transparent border-dark">
+
+                        <Link onClick={e => {this.acceptChosenUser(e)}}>
+                            <button className="btn btn-success btn-lg active">
+                                Accept
+                            </button>
+                        </Link>
+
+                        <Link onClick={e => {this.declineChosenUser(e)}}>
+                            <button className="btn btn-danger btn-lg active">
+                                Decline
+                            </button>
+                        </Link>
+                            
+                        </div>
+                    </div>
+                }
+                </div>
+                </div>
+
+                
+        </div>  
     )}
 }
 

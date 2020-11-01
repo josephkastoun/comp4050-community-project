@@ -28,7 +28,7 @@ class headingBar extends Component {
             .then( resp => resp.json())
             .then((data)=> {
                 data.forEach((value, index) => {
-                    if(this.state._id == value._id){
+                    if(this.props.userID == value._id){
                         this.setState({
                             coins: value.balance,
                             username: value.name,
@@ -49,10 +49,11 @@ class headingBar extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                  <div className="logoDiv">
+
                     <a className="logoDiv navbar-brand" href="/">
                     <svg width="30" height="30" viewBox="0 0 16 16" className="mainLogo d-inline-block align-top" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                        <path fillRule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                        <path fillRule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
                     </svg>
                     Commune
                     </a>
@@ -68,11 +69,7 @@ class headingBar extends Component {
                         
                     </ul>
                 </div>
-
-                <form className="form-inline">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-light my-2 my-sm-0 border border-dark" type="submit">Search</button>
-                </form>
+            
 
                 <div className="coinContainer border rounded">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="userCoinsIcon" fill="#17a2b8" xmlns="http://www.w3.org/2000/svg">

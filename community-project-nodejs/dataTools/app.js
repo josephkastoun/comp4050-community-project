@@ -18,6 +18,7 @@ var ratingRouter = require('./routes/rating')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var jobsRouter = require('./routes/jobs');
+var ratingRouter = require('./routes/rating');
 
 var app = express();
 
