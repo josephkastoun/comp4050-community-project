@@ -14,6 +14,7 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 
+var ratingRouter = require('./routes/rating')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var jobsRouter = require('./routes/jobs');
@@ -45,12 +46,9 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/jobs', jobsRouter);
-<<<<<<< Updated upstream
-=======
 app.use('/rating', ratingRouter);
 app.use('/', authRoutes);
 app.use('/', userRoutes);
->>>>>>> Stashed changes
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

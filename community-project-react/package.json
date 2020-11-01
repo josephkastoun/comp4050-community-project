@@ -11,12 +11,9 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
-<<<<<<< Updated upstream
-=======
     "js-search": "^2.0.0",
     "moment": "^2.24.0",
     "pm2": "^3.5.1",
->>>>>>> Stashed changes
     "popper": "^1.0.1",
     "query-string": "^6.5.0",
     "react": "^16.13.1",

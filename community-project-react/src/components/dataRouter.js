@@ -49,54 +49,46 @@ class dataRouter extends Component {
 
     render() {
         return (
-<<<<<<< Updated upstream
-            <Router>
-            <Header/>
-=======
             <BrowserRouter>
-            <Header userID={this.state.userID}/>
->>>>>>> Stashed changes
-            <div className="app"> 
-                <Switch>
-                    <Route path="/changeinfo">
-                        <ChangeInfo/>
-                    </Route>
+                <Header userID={this.state.userID}/>
+                <div className="app"> 
+                    <Switch>
+                        <Route path="/changeinfo">
+                            <ChangeInfo/>
+                        </Route>
 
-<<<<<<< Updated upstream
-                    <Route path="/datafill">
-                        <JobDataFill/>
-                    </Route>
+                        <Route path="/datafill">
+                            <JobDataFill/>
+                        </Route>
 
-                    <Route path="/dashboard">
-=======
-                    <Route path='/login' exact component={Login}/>
-                    <Route path='/register' exact component={Register}/>
-                    <PrivateRoute component={UserProfile} path="/profile" exact />
+                        <Route path="/dashboard"/>
+                        <Route path='/login' exact component={Login}/>
+                        <Route path='/register' exact component={Register}/>
+                        <PrivateRoute component={UserProfile} path="/profile" exact />
 
 
-                    <Route path="/add">
-                        <JobDataFill userID={this.state.userID}/>
-                    </Route>
+                        <Route path="/add">
+                            <JobDataFill userID={this.state.userID}/>
+                        </Route>
 
-                    <Route exact path = "/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
+                        <Route exact path = "/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
 
-                    <PrivateRoute component={Dashboard} path="/dashboard" jobs={this.state.jobs} userID={this.state.userID} exact />
+                        <PrivateRoute component={Dashboard} path="/dashboard" jobs={this.state.jobs} userID={this.state.userID} exact />
 
-                    <PrivateRoute path="/dashboard">
->>>>>>> Stashed changes
-                        <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>
-                    </PrivateRoute>
+                        <PrivateRoute path="/dashboard">
+                            <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>
+                        </PrivateRoute>
 
-                    <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
+                        <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
 
-                    <Route exact path = "/myjob" render={(props) => <MyJobPage {...props} /> }/>
+                        <Route exact path = "/myjob" render={(props) => <MyJobPage {...props} /> }/>
 
-                    <Route path="/">
-                        <HomePage jobs={this.state.jobs} userID={this.state.userID}/>
-                    </Route>
-                </Switch>
-            </div>
-        </BrowserRouter>
+                        <Route path="/">
+                            <HomePage jobs={this.state.jobs} userID={this.state.userID}/>
+                        </Route>
+                    </Switch>
+                </div>
+            </BrowserRouter>
         );
     }
 }

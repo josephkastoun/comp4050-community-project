@@ -7,11 +7,8 @@ import ActiveListings from './activeListings';
 import CurrentJobs from './currentJobs';
 import History from './history';
 import Info from './info';
-<<<<<<< Updated upstream
-=======
 import Datafill from '../dataFill/dataFillPage';
 import { isAuthenticated } from "../../auth/index";
->>>>>>> Stashed changes
 
 
 class dashboard extends Component {
@@ -36,7 +33,12 @@ class dashboard extends Component {
 
         var activeJobs = this.props.jobs
         activeJobs = this.props.jobs.filter(function (job) {
-            return job.userID === uID;
+            return job.userID === uID && job.jobStatus != 4;
+        });
+
+        var pastJobs = this.props.jobs
+        pastJobs = this.props.jobs.filter(function (job) {
+            return job.userID === uID && job.jobStatus == 4;
         });
 
         
@@ -49,18 +51,15 @@ class dashboard extends Component {
                             
                         </div>
                         <div class="col-lg">
-<<<<<<< Updated upstream
                             <Info />
                             <Link to="/datafill">Fill Data</Link>
                             <CurrentJobs jobs={myJobs}/>
                             <ActiveListings jobs={activeJobs}/>
                             <History />
-=======
                             <Info uID = {_id}/>
                             <CurrentJobs jobs={myJobs} userID={_id}/>
                             <ActiveListings jobs={activeJobs} userID={_id}/>
                             <History jobs={pastJobs} userID={_id}/>
->>>>>>> Stashed changes
                         </div>
                         <div class="col-">
                             
