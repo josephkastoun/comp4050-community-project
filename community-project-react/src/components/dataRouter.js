@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Switch,
     Route,
+    Redirect,
     Link
   } from "react-router-dom";
 import UserProfile from "./userProfile/userProfile";
-import ChangeContact from "./userProfile/changeContact";
-import Header from "./headingBar";
-import ChangeAddress from "./userProfile/changeAddress";
+import Header from "./HeadingBar";
+import ChangeInfo from "./userProfile/changeInfo";
 import HomePage from "./homePage/homePage"
 import Dashboard from "./dashboard/dashboard"
 import JobPage from "./jobPage/jobPage"
 import MyJobPage from "./myJobPage/myJobPage"
 import JobDataFill from "./dataFill/dataFillPage"
+import Register from '../user/Register';
+import Login from '../user/Login';
+import PrivateRoute from '../auth/PrivateRoute'
 
 class dataRouter extends Component {
 
@@ -46,27 +49,43 @@ class dataRouter extends Component {
 
     render() {
         return (
+<<<<<<< Updated upstream
             <Router>
             <Header/>
+=======
+            <BrowserRouter>
+            <Header userID={this.state.userID}/>
+>>>>>>> Stashed changes
             <div className="app"> 
                 <Switch>
-                    <Route path="/profile">
-                        <UserProfile/>
-                    </Route>
-                    <Route path="/changecontact">
-                        <ChangeContact/>
-                    </Route>
-                    <Route path="/changeaddress">
-                        <ChangeAddress/>
+                    <Route path="/changeinfo">
+                        <ChangeInfo/>
                     </Route>
 
+<<<<<<< Updated upstream
                     <Route path="/datafill">
                         <JobDataFill/>
                     </Route>
 
                     <Route path="/dashboard">
-                        <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>
+=======
+                    <Route path='/login' exact component={Login}/>
+                    <Route path='/register' exact component={Register}/>
+                    <PrivateRoute component={UserProfile} path="/profile" exact />
+
+
+                    <Route path="/add">
+                        <JobDataFill userID={this.state.userID}/>
                     </Route>
+
+                    <Route exact path = "/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
+
+                    <PrivateRoute component={Dashboard} path="/dashboard" jobs={this.state.jobs} userID={this.state.userID} exact />
+
+                    <PrivateRoute path="/dashboard">
+>>>>>>> Stashed changes
+                        <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>
+                    </PrivateRoute>
 
                     <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
 
@@ -77,7 +96,7 @@ class dataRouter extends Component {
                     </Route>
                 </Switch>
             </div>
-        </Router>
+        </BrowserRouter>
         );
     }
 }

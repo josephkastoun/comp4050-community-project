@@ -12,7 +12,7 @@
 }
 
 .btn-group {
-    display: flex;
+    width:100%;
 }
 
 .feedback-bar {

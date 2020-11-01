@@ -5,7 +5,7 @@ var path = require('path');
 const ObjectID = require('mongodb').ObjectID
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://communityproject:1234@community-project.mjqui.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 function createDynamicObj(obj){
@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
   if(fetch){
     MongoClient.connect(uri, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("userData");
+      var dbo = db.db("<dbname>");
 
       dbo.collection("users").find(createDynamicObj(obj)).toArray(function(err, result) {
         if (err) throw err;
@@ -71,7 +71,7 @@ router.get('/', function(req, res, next) {
 
     MongoClient.connect(uri, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("userData");
+      var dbo = db.db("<dbname>");
 
       dbo.collection("users").insertOne(obj
         , (err, result) => {
