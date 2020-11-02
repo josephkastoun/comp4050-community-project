@@ -23,15 +23,18 @@ const HeadingBar = ({ history }) => (
                 <Link to="/">
                     <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                 </Link>
-                {isAuthenticated() && <div>
+                {isAuthenticated() && 
                     <Link to="/profile">
                         <a className="nav-link" href="/profile">My Profile</a>
                     </Link>
+                }
+
+                {isAuthenticated() && 
                     <Link to="/dashboard">
                         <a className="nav-link" href="/profile">My Dashboard</a>
                     </Link>
-                </div>
                 }
+
             </ul>
         </div>
 
