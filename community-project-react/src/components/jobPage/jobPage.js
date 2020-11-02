@@ -1,6 +1,7 @@
 import React, { Component , useState} from '../../../node_modules/react';
 import './jobPage.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { isAuthenticated } from "../../auth/index";
 
 import {
     Link
@@ -240,7 +241,7 @@ markAsCompleted(event) {
                         </button>
                     </Link>}
                     
-                    {job.jobStatus == 1 && job.userID != this.state.userID && <Link onClick={e => {this.applyForJob(e)}}>
+                    {job.jobStatus == 1 && isAuthenticated() && job.userID != this.state.userID && <Link onClick={e => {this.applyForJob(e)}}>
                         <button className="btn btn-primary btn-lg active">
                             Apply for Job
                         </button>
