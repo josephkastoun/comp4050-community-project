@@ -7,18 +7,14 @@ class jobDataFill extends Component {
 
     constructor(props) {
         super(props);
-        this.inputType = 0;
-    }   
-
+        this.state = {
+            type: this.props.location.pathname
+        }
+        
+    }
 
     componentDidMount(){
-        fetch('http://localhost:3200/jobs?fetch=true&userID=' + this.props.userID)
-            .then( resp => resp.json())
-            .then((data)=> {
-                    this.setState({
-                        jobs: data
-                    })
-            })
+        this.state.type == "/edit" ? this.updateVariables() : this.newJob()
     }
 
 
@@ -28,8 +24,8 @@ class jobDataFill extends Component {
     submitData(event) {
         event.preventDefault();
 
-        let url = new URL("http://localhost:3200/jobs?" + (this.inputType.value == "Edit" ? "replace" : "add") + "=true")
-        if(this.inputType.value == "Edit"){
+        let url = new URL("http://localhost:3200/jobs?" + (this.state.type == "/edit" ? "replace" : "add") + "=true")
+        if(this.state.type == "/edit"){
             url.searchParams.set("replaceID", this.replaceID)
         }
         url.searchParams.set("userID", this.props.userID)
@@ -53,8 +49,13 @@ class jobDataFill extends Component {
         )
     }
 
+    newJob(){
+        this.jobStatus = 1
+        this.chosenUserID = ""
+    }
+
     updateVariables(){
-        var job = this.state.jobs.find(a => a._id === this.jobSelection.value);
+        var job = this.props.location.state.job;
         this.replaceID = job._id;
         this.jobStatus.value = job.jobStatus;
         this.chosenUserID.value = job.chosenUserID;
@@ -64,49 +65,20 @@ class jobDataFill extends Component {
         this.location.value = job.location;
     }
 
+
+    /*
+
+                    {this.props.location.pathname == "/edit" && <div className="form-group">
+                        <label>Edit The Job</label>
+                        <input type="text" className="form-control" id="inputType" ref={this.inputType = "Edit"} placeholder="Enter User ID" disabled value=""/>
+                    </div>}
+                    */
+
     render() {
         return (
             <div style={{margin : "10px"}}>
-                <Link to={"dashboard"} >{"<- Return to Dashboard"}</Link>
 
                 <form onSubmit={a => this.submitData(a)}>
-
-                    <div className="form-group">
-                        <label>Type</label>
-                        <select className="form-control form-control-sm" id="inputType" ref={(input) => this.inputType = input} onChange={e => {this.forceUpdate()}}>
-                            <option>Add</option>
-                            <option>Edit</option>
-                        </select>
-                    </div>
-
-
-                    {this.inputType.value == "Edit" &&  (
-                        <div className="form-group">
-                            <label>Type</label>
-                            <select className="form-control form-control-sm" id="inputType" ref={(input) => this.jobSelection = input} onClick={e => {this.updateVariables()}}>
-                            {this.state.jobs.map(job => (<option key={job._id}>{job._id}</option>))}
-                            </select>
-                        </div>)
-                    }
-
-                    <div className="form-group">
-                        <label>userID</label>
-                        <input type="text" className="form-control" id="jobUserIDInput" ref={(input) => this.userID = input} placeholder="Enter User ID" disabled value={this.props.userID}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>jobStatus</label>
-                        <select className="form-control form-control-sm" id="jobStatusInput" ref={(input) => this.jobStatus = input}>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group">
-                        <label>chosenUserID</label>
-                        <input type="text" className="form-control" id="jobChosenUserIDInput" ref={(input) => this.chosenUserID = input} placeholder="Enter User ID"/>
-                    </div>
 
                     <div className="form-group">
                         <label>Title</label>
@@ -128,9 +100,33 @@ class jobDataFill extends Component {
                         <input type="text" className="form-control" id="locationInput" placeholder="Enter Location" ref={(input) => this.location = input}/>
                     </div>
 
-                    <button type="submit" className="btn btn-primary">{this.inputType.value == "Edit" ? "Edit Variable" : "Submit"}</button>
+                    <div className="form-group">
+                        <label>jobStatus</label>
+                        <select className="form-control form-control-sm" id="jobStatusInput" ref={(input) => this.jobStatus = input}>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+                    {this.state.type == "/edit" && (
+                        <div className="form-group">
+                            <label>chosenUserID</label>
+                            <input type="text" className="form-control" id="jobChosenUserIDInput" ref={(input) => this.chosenUserID = input} placeholder="Enter User ID"/>
+                        </div>)
+                    }
+
+                    <span> 
+                        <button type="submit" className="btn btn-primary btn-lg active">{this.state.type == "/edit" ? "Apply" : "Create"}</button>
+                        <Link to="/dashboard">
+                            <button className="btn btn-danger btn-lg active">
+                                Cancel
+                            </button>
+                        </Link>
+                    </span>
 
                 </form>
+
             </div>
         );
     }

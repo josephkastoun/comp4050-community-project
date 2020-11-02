@@ -53,7 +53,7 @@ class dashboard extends Component {
                             
                         </div>
                         <div class="col-lg">
-                            <Link to="/datafill">Fill Data</Link>
+                            <Link to={{pathname: "/add", state: {prevLocation : "/dashboard"}}}><button className="btn btn-success btn-lg active">Create A New Job</button></Link>
                             <Info uID = {this.props.userID}/>
                             <CurrentJobs jobs={myJobs} userID={this.props.userID}/>
                             <ActiveListings jobs={activeJobs} userID={this.props.userID}/>

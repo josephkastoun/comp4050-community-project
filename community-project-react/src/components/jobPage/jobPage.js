@@ -234,7 +234,7 @@ markAsCompleted(event) {
                         </button>
                     </Link>
 
-                    {job.userID == this.state.userID && job.jobStatus != 3 && job.jobStatus != 4 && <Link to="/edit">
+                    {job.userID == this.state.userID && job.jobStatus != 3 && job.jobStatus != 4 && <Link to={{pathname: "/edit", state: {job: job}}}>
                         <button className="btn btn-primary btn-lg active">
                             Edit
                         </button>

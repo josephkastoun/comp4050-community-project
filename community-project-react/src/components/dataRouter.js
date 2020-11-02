@@ -12,7 +12,6 @@ import ChangeInfo from "./userProfile/changeInfo";
 import HomePage from "./homePage/homePage"
 import Dashboard from "./dashboard/dashboard"
 import JobPage from "./jobPage/jobPage"
-import MyJobPage from "./myJobPage/myJobPage"
 import JobDataFill from "./dataFill/dataFillPage"
 import Register from '../user/Register';
 import Login from '../user/Login';
@@ -86,9 +85,7 @@ class dataRouter extends Component {
                         <PrivateRoute component={UserProfile} path="/profile" exact />
 
 
-                        <Route path="/add">
-                            <JobDataFill userID={this.state.userID}/>
-                        </Route>
+                        <Route exact path = "/add" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
 
                         <Route exact path = "/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
 
@@ -98,8 +95,6 @@ class dataRouter extends Component {
                         </Route>
 
                         <Route exact path = "/job" render={(props) => <JobPage {...props} userID={this.state.userID}/> }/>
-
-                        <Route exact path = "/myjob" render={(props) => <MyJobPage {...props} userID={this.state.userID}/> }/>
 
                         <Route path="/">
                             <HomePage jobs={this.state.jobs} userID={this.state.userID}/>
