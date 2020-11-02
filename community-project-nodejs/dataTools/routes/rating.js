@@ -5,7 +5,7 @@ var path = require('path');
 const ObjectID = require('mongodb').ObjectID
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/userData?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 // Example URL: http://localhost:3200/rating?add=true&userID=5f728f406d252648c48c303e&chosenUserID=5f728f406d252648c48c303e&jobID=5f728f406d252648c48c303e&rating=-1
