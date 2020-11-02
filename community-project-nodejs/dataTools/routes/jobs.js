@@ -110,8 +110,6 @@ router.get('/', function(req, res, next) {
             return;
         }
 
-        console.log(obj);
-
         Object.keys(obj).forEach(function(key,index) {
             if((obj[key] == null || obj[key] == NaN) && key != "_id"){
                 res.send("Missing parameter " + key)
@@ -119,13 +117,16 @@ router.get('/', function(req, res, next) {
             }
         });
 
+        obj._id = replaceID;
+        console.log(obj);
+
         MongoClient.connect(uri, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("<dbname>");
+            var dbo = db.db("userData");
 
             dbo.collection("jobs").findOneAndReplace({_id: replaceID}, createDynamicObj(obj)).then(replacedDocument => {
                 if(replacedDocument) {
-                    res.send(`Successfully replaced the following document: ${replacedDocument}.`)
+                    res.send(JSON.parse(JSON.stringify(replacedDocument)))
                 } else {
                     res.send("No document matches the provided query.")
                 }

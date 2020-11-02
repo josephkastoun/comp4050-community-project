@@ -49,13 +49,17 @@ class dataRouter extends Component {
     }
 
     componentDidMount(){
+        this.updateJobs()
+    }
+
+    updateJobs(){
         fetch('http://localhost:3200/jobs?fetch=true')
             .then( resp => resp.json())
             .then((data)=> {
                 this.setState({
                     jobs: data
                 })
-            })
+        })
     }
 
 

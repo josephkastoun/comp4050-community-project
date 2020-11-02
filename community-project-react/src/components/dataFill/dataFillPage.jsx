@@ -22,6 +22,9 @@ class jobDataFill extends Component {
     // let location = req.query.location;
 
     submitData(event) {
+
+        console.log(this.jobStatus.value);
+
         event.preventDefault();
 
         let url = new URL("http://localhost:3200/jobs?" + (this.state.type == "/edit" ? "replace" : "add") + "=true")

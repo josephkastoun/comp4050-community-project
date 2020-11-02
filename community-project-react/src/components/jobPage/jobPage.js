@@ -28,7 +28,7 @@ applyForJob(event) {
 
     url.searchParams.set("replaceID", job._id)
     url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("jobStatus", 2)
     url.searchParams.set("chosenUserID", job.chosenUserID)
     url.searchParams.set("title", job.title)
     url.searchParams.set("description", job.desc)
@@ -59,7 +59,7 @@ acceptChosenUser(event) {
 
     url.searchParams.set("replaceID", job._id)
     url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("jobStatus", 3)
     url.searchParams.set("chosenUserID", job.chosenUserID)
     url.searchParams.set("title", job.title)
     url.searchParams.set("description", job.desc)
@@ -91,7 +91,7 @@ declineChosenUser(event) {
 
     url.searchParams.set("replaceID", job._id)
     url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("jobStatus", 1)
     url.searchParams.set("chosenUserID", job.chosenUserID)
     url.searchParams.set("title", job.title)
     url.searchParams.set("description", job.desc)
@@ -114,6 +114,7 @@ declineChosenUser(event) {
 markAsCompleted(event) {
     event.preventDefault();
     //this.updateVariables();
+    //http://localhost:3200/rating?rating=true&userID=5f728f406d252648c48c303e&chosenUserID=5f728f406d252648c48c303e&jobID=5f728f406d252648c48c303e&rating=-1
 
     var job = this.state.job
     job.jobStatus = 4;
@@ -122,7 +123,7 @@ markAsCompleted(event) {
 
     url.searchParams.set("replaceID", job._id)
     url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", job.jobStatus)
+    url.searchParams.set("jobStatus", 4)
     url.searchParams.set("chosenUserID", job.chosenUserID)
     url.searchParams.set("title", job.title)
     url.searchParams.set("description", job.desc)
@@ -137,9 +138,28 @@ markAsCompleted(event) {
                 this.setState({
                     job: data
                 })
+
+                url = new URL("http://localhost:3200/rating?add=true")
+
+                url.searchParams.set("userID", job.userID)
+                url.searchParams.set("chosenUserID", job.chosenUserID)
+                url.searchParams.set("jobID", job._id)
+                url.searchParams.set("rating", 1)
+            
+                fetch(url.href).then(() =>
+                {
+                    fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+                    .then( resp => resp.json())
+                    .then((data)=> {
+                            this.setState({
+                                job: data
+                            })
+                    })
+                })
         })
-    }
-)
+    })
+
+
 }
 
     componentDidMount() {
