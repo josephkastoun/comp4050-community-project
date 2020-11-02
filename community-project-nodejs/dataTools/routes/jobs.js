@@ -137,7 +137,7 @@ router.get('/', function(req, res, next) {
         MongoClient.connect(uri, function(err, db) {
             if (err) throw err;
             var dbo = db.db("userData");
-            var random = Math.floor(Math.random() * 4);
+            var random = Math.floor(Math.random() * 5);
             var _id2 = "";
 
             dbo.collection("users").find({}).toArray(function(err, result) {
