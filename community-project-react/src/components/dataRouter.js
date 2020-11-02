@@ -17,16 +17,25 @@ import JobDataFill from "./dataFill/dataFillPage"
 import Register from '../user/Register';
 import Login from '../user/Login';
 import PrivateRoute from '../auth/PrivateRoute'
+import { isAuthenticated } from "../auth/index";
+
 
 class dataRouter extends Component {
 
     constructor(props) {
         super(props);
+        const {
+            user: { _id, name, email, address, balance, about, role }
+          } = isAuthenticated();
         this.state = {
           location: null,
-          userID: '5f97e0d1838acf05b8c99536',
+          userID: _id,
+          name: name,
+          balance: balance,
           jobs: []
         };
+
+    
     }
 
     componentDidMount(){
@@ -50,7 +59,7 @@ class dataRouter extends Component {
     render() {
         return (
             <BrowserRouter>
-                <Header userID={this.state.userID}/>
+                <Header userID={this.state.userID} name={this.state.name} balance={this.state.balance}/>
                 <div className="app"> 
                     <Switch>
                         <Route path="/changeinfo">

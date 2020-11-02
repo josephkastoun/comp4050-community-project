@@ -181,7 +181,7 @@ markAsCompleted(event) {
                     <div class="row no-gutters">
                         <div className="col-md-4">
                             <img className="jobImage card-img-top"
-                                src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
+                                src={"https://picsum.photos/seed/" + this.state.job._id + "/400/400"} />
                         </div>
 
                         <div className="col-md-8">
