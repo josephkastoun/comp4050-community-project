@@ -29,7 +29,7 @@ class dashboard extends Component {
 
         var myJobs = this.props.jobs
         myJobs = this.props.jobs.filter(function (job) {
-           return job.chosenUserID === uID;
+           return job.chosenUserID === uID && job.jobStatus != 4;
         });
 
         var activeJobs = this.props.jobs
@@ -39,7 +39,7 @@ class dashboard extends Component {
 
         var pastJobs = this.props.jobs
         pastJobs = this.props.jobs.filter(function (job) {
-            return job.userID === uID && job.jobStatus == 4;
+            return (job.userID === uID || job.chosenUserID === uID) && job.jobStatus == 4;
         });
 
 

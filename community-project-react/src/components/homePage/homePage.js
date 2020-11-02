@@ -54,7 +54,7 @@ class HomePage extends Component {
     }
  
     let jobList = this.state.searchResults.map(job => {
-      return (job.userID  != this.props.userID &&
+      return (job.userID != this.props.userID && job.jobStatus != 4 &&
         <Link className="job" to={{pathname: "/job", state: {job: job, prevLocation : "/"}}}>
         <div className="homeCard border-dark mb-3">
           <div className="homeCardBody text-dark">

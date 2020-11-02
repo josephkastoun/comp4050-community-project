@@ -19,6 +19,14 @@ const Profile = () => {
     user: { _id, name, email, address, balance, about, role }
   } = isAuthenticated();
 
+  let rating = 0;
+  
+  fetch('http://localhost:3200/rating?total=true&chosenUserID=' + _id)
+  .then( resp => resp.json())
+  .then((data)=> {
+     rating = data.total
+  })
+
 
   return (
       <div className="Profile-page">
@@ -91,23 +99,7 @@ const Profile = () => {
 
             </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 clas="card-title">Your Rating</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Feedback Ratings</h6>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-success btn-lg ">10</button>
-                        <button type="button" class="btn btn-secondary btn-lg">3</button>
-                        <button type="button" class="btn btn-danger btn-lg">0</button>
-                    </div>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-light btn-lg" disabled>Positive</button>
-                        <button type="button" class="btn btn-light btn-lg" disabled>Neutral</button>
-                        <button type="button" class="btn btn-light btn-lg" disabled>Negative</button>
-                    </div>
-                    
-                </div>
-            </div>
+            
 
          
 
