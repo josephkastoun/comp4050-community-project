@@ -16,7 +16,7 @@ import { isAuthenticated } from "../../auth/index";
 
 const Profile = () => {
   const {
-    user: { _id, name, email, address, balance, role }
+    user: { _id, name, email, address, balance, about, role }
   } = isAuthenticated();
 
 
