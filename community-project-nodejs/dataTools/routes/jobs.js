@@ -146,7 +146,7 @@ router.get('/', function(req, res, next) {
 
                 var obj = {
                     userID : _id2,
-                    jobStatus: 0,
+                    jobStatus: 1,
                     chosenUserID : "",
                     title: generateName(),
                     description: "I need a hand!",
