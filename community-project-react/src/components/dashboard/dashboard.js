@@ -19,12 +19,13 @@ class dashboard extends Component {
     
 
     render() {
-
+        /* Get user info if authenticated
         const {
             user: { _id, name, email, address, balance, role }
         } = isAuthenticated();
+        */
 
-        var uID = _id;
+        var uID = this.props.userID
 
         var myJobs = this.props.jobs
         myJobs = this.props.jobs.filter(function (job) {

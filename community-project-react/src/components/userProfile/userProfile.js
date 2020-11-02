@@ -112,18 +112,8 @@ const Profile = () => {
          
 
         </div>
+        
 
-        <div className="profilePicCard">
-          <img src={profilePic} className="Profile-picture" alt="profilePic" />
-          <div className="card-body">
-            <h5 className="card-title">{name}</h5>
-            <a href="#" className="btn btn-primary">Change Profile Picture</a>
-          </div>
-        </div>
-
-        <div className="header">
-          
-        </div>
 
 
         </div>

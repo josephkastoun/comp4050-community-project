@@ -5,7 +5,7 @@ const { finished } = require('stream');
 const ObjectID = require('mongodb').ObjectID
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://communityproject:1234@community-project.mjqui.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://testuser:1234@communityproject.7gya3.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 
@@ -76,7 +76,7 @@ router.get('/', function(req, res, next) {
 
         MongoClient.connect(uri, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("<dbname>");
+            var dbo = db.db("userData");
 
             dbo.collection("jobs").insertOne(obj
             , (err, resuly) => {
@@ -92,7 +92,7 @@ router.get('/', function(req, res, next) {
     if(fetch){
         MongoClient.connect(uri, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("<dbname>");
+            var dbo = db.db("userData");
 
 
             dbo.collection("jobs").find(createDynamicObj(obj)).toArray(function(err, result) {
@@ -136,7 +136,7 @@ router.get('/', function(req, res, next) {
     if(randomData){
         MongoClient.connect(uri, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("<dbname>");
+            var dbo = db.db("userData");
             var random = Math.floor(Math.random() * 100);
             var _id2 = "";
 

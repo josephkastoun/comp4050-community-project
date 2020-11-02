@@ -61,7 +61,6 @@ class dataRouter extends Component {
                             <JobDataFill/>
                         </Route>
 
-                        <Route path="/dashboard"/>
                         <Route path='/login' exact component={Login}/>
                         <Route path='/register' exact component={Register}/>
                         <PrivateRoute component={UserProfile} path="/profile" exact />
@@ -73,11 +72,10 @@ class dataRouter extends Component {
 
                         <Route exact path = "/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
 
-                        <PrivateRoute component={Dashboard} path="/dashboard" jobs={this.state.jobs} userID={this.state.userID} exact />
-
-                        <PrivateRoute path="/dashboard">
+                        
+                        <Route path="/dashboard">
                             <Dashboard jobs={this.state.jobs} userID={this.state.userID}/>
-                        </PrivateRoute>
+                        </Route>
 
                         <Route exact path = "/job" render={(props) => <JobPage {...props} /> }/>
 
