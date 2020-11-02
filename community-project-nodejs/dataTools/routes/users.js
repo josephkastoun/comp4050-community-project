@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
   if(fetch){
     MongoClient.connect(uri, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("<dbname>");
+      var dbo = db.db("userData");
 
       dbo.collection("users").find(createDynamicObj(obj)).toArray(function(err, result) {
         if (err) throw err;
@@ -71,7 +71,7 @@ router.get('/', function(req, res, next) {
 
     MongoClient.connect(uri, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("<dbname>");
+      var dbo = db.db("userData");
 
       dbo.collection("users").insertOne(obj
         , (err, result) => {
