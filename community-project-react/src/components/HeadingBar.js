@@ -1,5 +1,5 @@
 import React from 'react';
-import './HeadingBar.css'
+import './headingBar.css'
 import {
     Link,
     withRouter
