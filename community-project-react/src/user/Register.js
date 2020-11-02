@@ -6,9 +6,9 @@ import { register } from '../auth/index'
 const Register = () => {
 
     const [values, setValues] = useState({
-        name:'user6',
-        email: 'user6@email.com',
-        address: '123 sample st test',
+        name:'User',
+        email: 'user@email.com',
+        address: '14 Sample Street, Suburb NSW',
         about: '',
         password: '123456',
         error: '',
